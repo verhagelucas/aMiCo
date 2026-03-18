@@ -1,0 +1,24 @@
+0) make sure Zen API gateway is installed
+
+1) install miniforge
+
+2) download zen-api package from:
+https://github.com/zeiss-microscopy/OAD/blob/master/ZEN-API/python_package/zen_api-2025.10.1/dist/zen_api-2025.10.1.tar.gz
+
+3) download environment from:
+https://github.com/Mar0q/Microscope_Control/Microscope_Implementation/Setup/env_image_smartmic.yml
+or if you want the unedited zenAPI environment:
+https://github.com/zeiss-microscopy/OAD/blob/master/ZEN-API/python_examples/python_env/env_smartmic.yml
+
+4) install the smartmic python package:
+conda env create -f env_imagej_smartmic.yml
+(or
+conda env create -f env_smartmic.yml)
+
+5) install the tar package: 
+conda activate imagej_smartmic (or smartmic)
+pip install zen_api-2025.1.1.tar.gz
+
+6) change the config.init file:
+In the taskbar's hidden icons click on the ZenApiGateway icon >> Control Mode >> Copy Global Control Token to the Clipboard
+Open the config.init file and paste into the "control-token"" field, then save the file

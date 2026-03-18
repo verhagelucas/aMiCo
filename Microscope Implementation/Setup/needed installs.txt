@@ -1,0 +1,39 @@
+PYTHON ENV:
+Installed the pyautogui into the smartmic env (might not be needed in final)
+
+Making the imagej_smartmic env:
+Follow the steps on installation with the smartmic env
+
+Check python version <= 3.12
+Downgrade numpy to 1.26.4
+pip install --upgrade numpy==1.26
+
+Install pyimagej package by:
+    conda activate smartmic
+    conda install pyimagej openjdk=8
+
+if Error:
+“JVMNotFoundException: No JVM shared library file (libjvm.so) found. Try setting up 
+the JAVA_HOME environment variable properly.”
+manually specify on the code:
+
+import os
+os.environ["JAVA_HOME"] =".../miniconda3/envs/smartmic/lib/jvm"
+
+for pyimagej to work need:
+python v 3.11
+numpy downgraded (numpy=1.26.4)
+
+FIJI:
+Install MorphoLibJ into fiji, instructions below:
+    https://imagej.net/plugins/morpholibj
+
+Install BIOP into FIJI, from Update site PTBIOP.
+
+Install the own folder into the fiji plugin folder
+*optional, might not be needed if we dont use autopygui
+set the shortcuts:
+    - ctrl+7 = Open from path
+    - ctrl+6 = Process Image 
+
+
