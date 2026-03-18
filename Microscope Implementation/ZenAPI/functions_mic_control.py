@@ -3,6 +3,7 @@
 import asyncio
 from pathlib import Path
 import os
+import signal
 import time
 from typing import Dict, Union
 import numpy as np
@@ -189,6 +190,7 @@ async def take_timelapse(experiment_service, zoomed_experiment_setup, save_path,
         zoomed: boolean representing whether the current snap is zoomed in or an overview snap
 
     Returns:
+        results_dict[dict_key]: path of where the image file has been stored
 
     '''
     # execute experiment
@@ -213,6 +215,8 @@ async def take_timelapse(experiment_service, zoomed_experiment_setup, save_path,
 
     results_dict[dict_key] = Path(destination_path) / (out_name + ".czi")
 
+    return results_dict[dict_key]    # returns the path of the image file
+
 
 async def take_zstack(experiment_service, experiment_setup, save_path, destination_path, results_dict, pos_index, zoomed):
     '''
@@ -229,7 +233,7 @@ async def take_zstack(experiment_service, experiment_setup, save_path, destinati
         zoomed: boolean representing whether the current snap is zoomed in or an overview snap
 
     Returns:
-        # results_dict[dict_key]: path of where the image file has been stored
+        results_dict[dict_key]: path of where the image file has been stored
 
     '''
     # execute experiment

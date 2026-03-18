@@ -1,13 +1,7 @@
 macro_process_image = """
 #@ String path
-#@output Object image_height
-#@output Object image_width
-getDimensions(width, height, channels, slices, frames);
 
-// Get microns per pixel 
-pixWidth = getMetadata("fiji.pixel.width"); pixHeight = getMetadata("fiji.pixel.height");   
-// Calculate physical dimensions in microns
-image_width = width * pixWidth; image_height = height * pixHeight;
+getDimensions(width, height, channels, slices, frames);
 
 if (channels>1) {
     run("Split Channels");
@@ -24,8 +18,37 @@ close;	//close OG image
 
 saveAs("Tiff", path+"/process.tif");
 
+"""
+
+macro_process_image_getsize = """
+#@ String path
+#@output Object image_height
+#@output Object image_width
+getDimensions(width, height, channels, slices, frames);
+
+// Get pixel width&height in um
+getPixelSize(unit, pixelWidth, pixelHeight);
+
+// Calculate physical dimensions in um
+image_width = width * pixelWidth; image_height = height * pixelHeight;
+
+if (channels>1) {
+    run("Split Channels");
+    for (i = 0; i < channels-1; i++) {	//close the images containing channels that arent the first one(just bcs, no real reason why only the first one)
+        close;
+    }
+}
+
+im_name = getTitle(); //get whole title of the image
+
+run("Z Project...", "projection=[Max Intensity] all");	//project all slices to get maxZproj
+selectImage(im_name);	//select OG image	
+close;	//close OG image
+
+saveAs("Tiff", path+"/process.tif");
 
 """
+
 
 macro_candidate_segmentation = """
 #@ String path
@@ -124,6 +147,7 @@ roiManager("Deselect");
 roiManager("Measure");
 saveAs("Results", path + "/Results.csv");
 """
+
 
 macro_reset_ij =  """
 close("*");

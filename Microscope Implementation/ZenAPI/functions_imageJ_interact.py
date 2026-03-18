@@ -91,7 +91,7 @@ def fiji_segmentation(image_path, save_directory, ij_instance):
     ij_instance.py.run_macro(macro_reset_ij) 
 
 
-def find_largest_centre(image_file, im_width, im_height):
+def find_largest_centre_com(image_file, im_width, im_height):
     '''
     From the 'Results.csv' file produced by fiji_interact identifies the object with
     the largest perimeter and uses its Centre of Mass (CoM) coordinates to calculate
@@ -111,15 +111,51 @@ def find_largest_centre(image_file, im_width, im_height):
     '''
     path = Path(image_file)
     directory = path.parent
-    #Extract the data from the measurements
+    # Extract the data from the measurements
     data = pd.read_csv(directory / Path("Results.csv"),     
                     usecols=["XM", "YM", "Perim."])
 
-    max_perim = data.loc[data["Perim."].idxmax()]   #Find the ROI with max perimeter
+    max_perim = data.loc[data["Perim."].idxmax()]   # Find the ROI with max perimeter
     com_x, com_y = max_perim["XM"], max_perim["YM"] # Extract coordinates of its CoM
-    print(f"CoMx = {com_x}, CoMy = {com_y}")
+    # print(f"CoMx = {com_x}, CoMy = {com_y}")
 
     dx, dy = (com_x - im_width/2), (com_y - im_height/2)  # Calculate how much stage should move from current pos
+
+    return dx, dy
+
+def find_largest_centre_dims(image_file, im_width, im_height):
+    '''
+    From the 'Results.csv' file produced by fiji_interact identifies the object with
+    the largest perimeter and uses its bounding box details to first find the centre
+    of the selection's BB and then calculates the distance between the center of the
+    image and the centre calculated from the largest identified object. 
+
+    Args:
+        image_file: path to image being analysed
+        im_width: Width of image being analysed [in μm]
+        im_height: Height of image being analysed [in μm]
+
+    Returns:
+        dx: x distance between current image centre and the centre of the identified 
+            object with the largest perimeter [in μm]
+        dy: y distance between current image centre and the centre of the identified 
+            object with the largest perimeter [in μm]
+
+    '''
+    path = Path(image_file)
+    directory = path.parent
+    # Extract the data from the measurements
+    data = pd.read_csv(directory / Path("Results.csv"),     
+                    usecols=["Width", "Height", "BX", "BY", "Perim."])
+
+    max_perim = data.loc[data["Perim."].idxmax()]   # Find the ROI with max perimeter
+    width, height = max_perim["Width"], max_perim["Height"] # Extract height and width
+    bx, by = max_perim["BX"], max_perim["BY"] # Extract starting points of bounding box
+
+    centre_x, centre_y = bx + width/2, by + height/2
+    # print(f"Centre_x = {centre_x}, Centre_y = {centre_y}")
+
+    dx, dy = (centre_x - im_width/2), (centre_y - im_height/2)  # Calculate how much stage should move from current pos
 
     return dx, dy
 

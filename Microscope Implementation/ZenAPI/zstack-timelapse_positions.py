@@ -62,6 +62,8 @@ async def check_experiment_api(experiment_name_overview: str, experiment_name_zo
     timepoint_loops =[]
     overview_times = []
     zoom_times=[]
+    analysis_times=[]
+
     # get the gRPC channel and the metadata
     channel, metadata = initialize_zenapi(configfile)
 
@@ -125,48 +127,50 @@ async def check_experiment_api(experiment_name_overview: str, experiment_name_zo
 
     #endregion
 
-    logger.info("----------------------- Loop over all positions  -----------------------")
+    logger.info("----------------------- Begining Time and Position loop -----------------------\n\n")
     
     t=0
     while t < timepoints:   #loop over set timepoints
         
 
-        logger.info(f"-------------------------------- Time point: {t+1} -----------------------------------")
+        logger.info(f"-------------------------------- Time point: {t+1} -----------------------------------\n")
         time_folder = f"{experiment_folder}/timepoint_{t+1}"
         os.mkdir(time_folder)   #create folder pertimepoint in which to store images
 
         for i,pos in enumerate(pos_list):
-            tic = time.time()
-            logger.info(f"Start of new pos")
+            tic_pos = time.time()
+            logger.info(f"--------------------------- Position: {i} ------------------------------")
             current_x, current_y = pos[0]*1e-6, pos[1]*1e-6
 
             await stage_over_scan(simple_stage_service, current_x, current_y) #move to current "tile"
-            logger.info(f"Pos: {i} - Stage XY Position: {np.round(current_x * 1e6, 2)} - {np.round(current_y * 1e6, 2)} [micron]")
+            logger.info(f"Stage XY Position: {np.round(current_x * 1e6, 2)} - {np.round(current_y * 1e6, 2)} [micron]\n")
 
             #autofocus
             # await autofocus(swaf_service, focus_service, exp_setup_overview)  #TODO change to only focus if needed
 
             #take image
-            logger.info("Start SNAP Experiment ...")
+            logger.info("Start Overview Experiment ...")
             exp_path = await take_zstack(exp_service, exp_setup_overview, save_path, time_folder, results, i, zoomed=False)
-            logger.info("... Finished SNAP Experiment")
-            print(exp_path)
+            logger.info("... Finished Overview Experiment\n")
+
+            tic_analysis = time.time()
             #2) analyse the z_stack
             fiji_segmentation(str(exp_path), str(time_folder), ij)
             # im_width, im_height = fiji_segmentation(exp_path, time_folder, ij)
-            im_width, im_height = 1920.0, 1080.0    ## TODO: try and make the new package work with     
+            im_width, im_height = 5683.2, 3196.8    ## TODO: try and make the new package work with     
             '''im_width, im_height = float(im_size.getOutput("image_width")), float(im_size.getOutput("image_height"))
                                                     ^^^^^^^^^^^^^^^^^
                 AttributeError: 'java.util.HashMap' object has no attribute 'getOutput'''
 
-
             #3) analyse the results to get cell of interest
-            dx, dy = find_largest_centre(exp_path, im_width, im_height)
-            toc = time.time()
-            overview_times.append(toc-tic)
+            dx, dy = find_largest_centre_dims(exp_path, im_width, im_height)
+
+            analysis_times.append(time.time()-tic_analysis)
+            toc_overview = time.time()
+            overview_times.append(toc_overview-tic_pos)
 
             if dx or dy:   #if a dx or dy exist
-                logger.info("--Event Identified--")
+                logger.info("--Event Identified--\n")
 
                 # determine event position in [m]
                 new_posx, new_posy = current_x + dx* 1e-6, current_y + dy* 1e-6
@@ -178,40 +182,46 @@ async def check_experiment_api(experiment_name_overview: str, experiment_name_zo
 
                 logger.info("Start Timelapse Experiment ...")
                 await take_timelapse(exp_service, exp_setup_zoomed, save_path, time_folder, results, i, zoomed=True)
-                logger.info("... Finished Timelapse Experiment")
-
-                logger.info(f"Moving to new position {current_x*1e-6},{current_y*1e-6}")
+                logger.info("... Finished Timelapse Experiment\n")
 
                 await event_identified(simple_stage_service, objchanger_service, current_x, current_y, overview_obj)  # zoom out to overview
                 #TODO MAYBE reduce pos index s.t. the same position gets checked again in case someother cell has started mitosing
-                zoom_times.append(time.time()-toc)  
+                zoom_times.append(time.time()-toc_overview)  
 
-            timepoint_loops.append(time.time()-tic)
+            timepoint_loops.append(time.time()-tic_pos)
         t += 1
 
     
     
-    logger.info("Finished acquisition")    
+    logger.info("\n\nFinished acquisition\n\n")    
 
     # close the channel
     channel.close()
     
     time_array["overall_timepoint"] = timepoint_loops    
     time_array["overview_timepoint"] = overview_times    
-    time_array["zoomed_timepoints"] = zoom_times    
+    time_array["zoomed_timepoints"] = zoom_times 
+    time_array["analysis_timepoints"] = analysis_times   
 
 
     return results, time_array
 
 
 if __name__ == "__main__":
+    tic_top = time.time()
     # create logger
     logger = set_logging()
 
     # run the main function
     results, time_array = asyncio.run(check_experiment_api(experiment_name_overview=experiment_choice,experiment_name_zoomed=zoomed_exp_choice, configfile=config_path))
 
-    logger.info(results)
+    print(results)
     print(time_array)
+
     print("avg overview image: ", np.mean(time_array['overview_timepoint']))
     print("avg zoomed images: ", np.mean(time_array['zoomed_timepoints']))
+    print("avg image analysis: ", np.mean(time_array['analysis_timepoints']))
+
+    print('total time ', time.time()-tic_top)
+    os.kill(os.getpid(), signal.SIGINT) #Makes sure script ends and exits fiji at the end
+
