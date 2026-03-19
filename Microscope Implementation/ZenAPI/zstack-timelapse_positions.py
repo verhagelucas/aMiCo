@@ -57,12 +57,8 @@ ij = imagej.init(r"C:\Fiji", mode = "interactive")
 #TODO: consider turning the location results dict into a time dict that tells you when the images were taken
 async def check_experiment_api(experiment_name_overview: str, experiment_name_zoomed: str, configfile: str = "config.ini") -> Dict[str, Union[str, Path]]:
 
-    results = {}
-    time_array = []
-    timecount_times =[]
-    switch_times=[]
-    analysis_times=[]
-    find_centre_times = []
+    results = {}    # keep track of files
+    time_array = [] # keep track of times
 
     # get the gRPC channel and the metadata
     channel, metadata = initialize_zenapi(configfile)
@@ -199,26 +195,26 @@ async def check_experiment_api(experiment_name_overview: str, experiment_name_zo
             switch_time = (toc_switch_in-tic_switch_in)+(toc_switch_out-tic_switch_out)
 
             time_array.append({
-            "timepoint": t,
-            "position_index": i,
-            "analysis_time": analysis_time,
-            "find_centre_time": find_centre_time,
-            "switch_time": switch_time,
+                "timepoint": t,
+                "position_index": i,
+                "analysis_time": analysis_time,
+                "find_centre_time": find_centre_time,
+                "switch_time": switch_time,
             })
 
         timecount_time = time.time() - tic_timecount
         
         time_array.append({
-        "timepoint": t,
-        "total_time": timecount_time
+            "timepoint": t,
+            "total_time": timecount_time
         })
 
 
         t += 1
 
     
-    
-    logger.info("\n\nFinished acquisition\n\n")    
+    logger.info("\n\n")
+    logger.info("Finished acquisition\n\n")    
 
     # close the channel
     channel.close()
@@ -226,6 +222,14 @@ async def check_experiment_api(experiment_name_overview: str, experiment_name_zo
 
 
     return results, time_array
+
+def sec_to_hours(seconds):
+    a=str(seconds//3600)
+    b=str((seconds%3600)//60)
+    c=str((seconds%3600)%60)
+    d=["{} h {} m {} s".format(a, b, c)]
+    return d
+
 
 
 if __name__ == "__main__":
@@ -241,12 +245,23 @@ if __name__ == "__main__":
 
     time_df = pd.DataFrame(time_array)
 
-    time_df.to_csv(experiment_folder+r"\Timing_data.csv", index=False)  # save the times to a csv file
-
     avg_all = time_df[["analysis_time", "find_centre_time", "switch_time","total_time"]].mean() #take the mean of all time values obtained
-    print("Global averages:")
-    print(avg_all)
+    print(avg_all)  
 
-    print('total time ', time.time()-tic_top)
+    avg_row = {
+        "timepoint": "AVERAGES",
+        "analysis_time": avg_all["analysis_time"],
+        "find_centre_time": avg_all["find_centre_time"],
+        "switch_time": avg_all["switch_time"],
+        "total_time": avg_all["total_time"],
+    }
+
+    time_df = pd.concat([time_df, pd.DataFrame([avg_row])], ignore_index=True)  #Add as the last row
+
+    # Export to CSV
+    time_df.to_csv(f"{experiment_folder}/Timing_data.csv", index=False)  # save the times to a csv file
+
+    print('total time ', sec_to_hours(time.time()-tic_top))
+
     os.kill(os.getpid(), signal.SIGINT) #Makes sure script ends and exits fiji at the end
 

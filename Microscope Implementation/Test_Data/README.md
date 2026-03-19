@@ -28,6 +28,11 @@ Multiple timepoints were taken of the same positions and times were measured and
 3) How long does it take to identify the largest object and find its centre?
 4) How long does the switch to and from higher resolution take? (This includes switching of objectives and moving the stage)
 
+The table [Timing_data.csv](./Timing_data.csv) contains the individual measurements as well as the averaged measurements of an experiment with 3 timepoints containing 5 positions each, where the average measurements for each of the questions are:
+1) 378.652118 s
+2) 2.896857 s
+3) 0.003803 s
+4) 6.525838 s
 
 # Fixed Cell Detection
 ## Fixed Cell Mitosis Detection
