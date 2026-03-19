@@ -52,3 +52,4 @@ The main code to control the smart microscopy setup is the [zstack-timelapse_pos
 
 [zstack-timelapse_positions](./Microscope%20Implementation/ZenAPI/zstack-timelapse_positions.py) begins different experiments at the overview level, than the one begun when it is zoomed in, these experiments must be setup using the Zen Blue software and saved, their names must then be writen as variables in the [zstack-timelapse_positions](./Microscope%20Implementation/ZenAPI/zstack-timelapse_positions.py) code for the API to begin the determined experiments at different times. For the initial tests, the saved experiments can be found in the [Experiments](./Microscope%20Implementation/ZenAPI/Experiments/) folder.
 
+A test to evaluate the performance of the microscope control has been carried out ([Test_Data](./Microscope%20Implementation/Test_Data/)), where the resulting images along with timestamps can be found.
