@@ -58,11 +58,11 @@ ij = imagej.init(r"C:\Fiji", mode = "interactive")
 async def check_experiment_api(experiment_name_overview: str, experiment_name_zoomed: str, configfile: str = "config.ini") -> Dict[str, Union[str, Path]]:
 
     results = {}
-    time_array = {}
-    timepoint_loops =[]
-    overview_times = []
-    zoom_times=[]
+    time_array = []
+    timecount_times =[]
+    switch_times=[]
     analysis_times=[]
+    find_centre_times = []
 
     # get the gRPC channel and the metadata
     channel, metadata = initialize_zenapi(configfile)
@@ -132,13 +132,14 @@ async def check_experiment_api(experiment_name_overview: str, experiment_name_zo
     t=0
     while t < timepoints:   #loop over set timepoints
         
+        tic_timecount = time.time()
 
         logger.info(f"-------------------------------- Time point: {t+1} -----------------------------------\n")
         time_folder = f"{experiment_folder}/timepoint_{t+1}"
         os.mkdir(time_folder)   #create folder pertimepoint in which to store images
 
         for i,pos in enumerate(pos_list):
-            tic_pos = time.time()
+
             logger.info(f"--------------------------- Position: {i} ------------------------------")
             current_x, current_y = pos[0]*1e-6, pos[1]*1e-6
 
@@ -162,14 +163,17 @@ async def check_experiment_api(experiment_name_overview: str, experiment_name_zo
                                                     ^^^^^^^^^^^^^^^^^
                 AttributeError: 'java.util.HashMap' object has no attribute 'getOutput'''
 
+            toc_analysis = time.time()
+
             #3) analyse the results to get cell of interest
             dx, dy = find_largest_centre_dims(exp_path, im_width, im_height)
 
-            analysis_times.append(time.time()-tic_analysis)
-            toc_overview = time.time()
-            overview_times.append(toc_overview-tic_pos)
+            toc_find_centre = time.time()
+            
+
 
             if dx or dy:   #if a dx or dy exist
+                tic_switch_in = time.time()
                 logger.info("--Event Identified--\n")
 
                 # determine event position in [m]
@@ -177,18 +181,39 @@ async def check_experiment_api(experiment_name_overview: str, experiment_name_zo
 
                 #zoom into event
                 await event_identified(simple_stage_service, objchanger_service, new_posx, new_posy, zoomed_obj)  
-
+                toc_switch_in = time.time()
                 await autofocus(swaf_service, focus_service, exp_setup_zoomed)
 
                 logger.info("Start Timelapse Experiment ...")
                 await take_timelapse(exp_service, exp_setup_zoomed, save_path, time_folder, results, i, zoomed=True)
                 logger.info("... Finished Timelapse Experiment\n")
 
+                tic_switch_out = time.time()
                 await event_identified(simple_stage_service, objchanger_service, current_x, current_y, overview_obj)  # zoom out to overview
                 #TODO MAYBE reduce pos index s.t. the same position gets checked again in case someother cell has started mitosing
-                zoom_times.append(time.time()-toc_overview)  
+                toc_switch_out = time.time()
+            
+            # add times to lists
+            analysis_time = toc_analysis-tic_analysis
+            find_centre_time = toc_find_centre-toc_analysis
+            switch_time = (toc_switch_in-tic_switch_in)+(toc_switch_out-tic_switch_out)
 
-            timepoint_loops.append(time.time()-tic_pos)
+            time_array.append({
+            "timepoint": t,
+            "position_index": i,
+            "analysis_time": analysis_time,
+            "find_centre_time": find_centre_time,
+            "switch_time": switch_time,
+            })
+
+        timecount_time = time.time() - tic_timecount
+        
+        time_array.append({
+        "timepoint": t,
+        "total_time": timecount_time
+        })
+
+
         t += 1
 
     
@@ -198,10 +223,6 @@ async def check_experiment_api(experiment_name_overview: str, experiment_name_zo
     # close the channel
     channel.close()
     
-    time_array["overall_timepoint"] = timepoint_loops    
-    time_array["overview_timepoint"] = overview_times    
-    time_array["zoomed_timepoints"] = zoom_times 
-    time_array["analysis_timepoints"] = analysis_times   
 
 
     return results, time_array
@@ -218,9 +239,13 @@ if __name__ == "__main__":
     print(results)
     print(time_array)
 
-    print("avg overview image: ", np.mean(time_array['overview_timepoint']))
-    print("avg zoomed images: ", np.mean(time_array['zoomed_timepoints']))
-    print("avg image analysis: ", np.mean(time_array['analysis_timepoints']))
+    time_df = pd.DataFrame(time_array)
+
+    time_df.to_csv(experiment_folder+r"\Timing_data.csv", index=False)  # save the times to a csv file
+
+    avg_all = time_df[["analysis_time", "find_centre_time", "switch_time","total_time"]].mean() #take the mean of all time values obtained
+    print("Global averages:")
+    print(avg_all)
 
     print('total time ', time.time()-tic_top)
     os.kill(os.getpid(), signal.SIGINT) #Makes sure script ends and exits fiji at the end
