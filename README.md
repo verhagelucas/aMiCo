@@ -23,9 +23,9 @@ Use the condensated to  identify cells about to divide
 
 ### Speckles
 
-Using the [Extract_Speckles.cppipe](./Mitosis%20Detection/Cell%20Profiler/Extract_Speckles.cpproj) pipeline we identify speckles smaller than 10 units and get their frame and which parent cell they belong to into a .csv file.
+Using the [Extract_Speckles.cppipe](./Mitosis%20Detection/Cell%20Profiler/Speckles/Extract_Speckles.cpproj) pipeline we identify speckles smaller than 10 units and get their frame and which parent cell they belong to into a .csv file.
 
-Then, using the [Speckle_filtering.py](./Mitosis%20Detection/Cell%20Profiler/Speckle_filtering.py) script we count the speckles per cell per timeframe and separate into a new folder the images of the cells that surpass the set threshold number of speckles.
+Then, using the [Speckle_filtering.py](./Mitosis%20Detection/Cell%20Profiler/Speckles/Speckle_filtering.py) script we count the speckles per cell per timeframe and separate into a new folder the images of the cells that surpass the set threshold number of speckles.
 
 Curently, these images then get manually checked by comparing it to the timeframe and separated once more into "correctly identified"and ïncorrectly identified" cells.
 

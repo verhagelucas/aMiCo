@@ -8,13 +8,13 @@
 # Speckles (CP)
 
 
-## [Extract_Speckles.cpproj](Extract_Speckles.cpproj)
+## [Extract_Speckles.cpproj](Speckles/Extract_Speckles.cpproj)
 
 Identifies speckles smaller than 10 units and get their frame and which parent cell they belong to into a .csv file.
 
 It outputs a .csv file containing the information of each speckle found, and a folder containing the cropped cells for each timeframe.
 
-## [Speckle_filtering.py](Speckle_filtering.py)
+## [Speckle_filtering.py](Speckles/Speckle_filtering.py)
 
 Takes the path to the folder containing the cropped cell images.
 Imports the .csv file containing the information of each speckle found. The needed data being "File frame" and "Parent Cell".
