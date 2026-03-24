@@ -9,8 +9,7 @@ Here is the data obtained from the different tests performed using the Microscop
 
 # Size Test
 
-The size test experiments were performed on a a slide (see image below) onto which dots of differing sizes have been drawn with a marker.  The goal is to evaluate
-the performance of the segmentation and measurement algorithm based on its ability to discern the desired spots and zoom into them while keeping them centered.
+The size test experiments were performed on a slide (see image below) onto which dots of differing sizes have been drawn with a marker.  The goal is to evaluate the performance of the segmentation and measurement algorithm based on its ability to discern the desired spots and zoom into them while keeping them centered.
 
 ![Slide used for the Size Tests](../Figures/TestSize_Slide.jpeg)
 

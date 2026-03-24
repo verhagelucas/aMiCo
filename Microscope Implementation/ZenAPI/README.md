@@ -39,5 +39,15 @@ File containing the functions to perform analysis of the obtained images, there 
 
 ### [zstack-timelapse_positions.py](./zstack-timelapse_positions.py)
 
+    . Positions/ => Manually created folder\
+    ├── positions.csv => Manually exported positions file
+    └── <Experiment_Name>/ => Automatically created folder with specified <experiment name>
+        ├── "timepoint_<t>"/ => Automatically created folder
+        │   ├── Pos<i>_Z-Exp.czi => z-stack experiment file of position i
+        │   ├── Pos<i>_Zoomed_TL-Exp.czi => timelapse experiment file of zoomed position i
+        │   └── ...(Done for all positions <i> in `positions.csv` file)
+        ├── ...(Done for <t> in specified <timepoints>)
+        └── timing_data.csv => Automatically created file with experiment timing information
+
 # Instructions
 
