@@ -1,12 +1,28 @@
 # MEP file contents
 
 - [Image J Approaches](#image-j-approaches) 
+    - [Haralick_Analysis](#haralick-analysis)
+        - [Test_Data](#test_data)
+        - [Process_HaralickROIs.ijm](#process_haralick_roisijm)
+        - [Haralick_plots.py](#haralick_plotspy)
     - [Process_Image.ijm](#process_imageijm)
     - [Candidate_Segmentation_Measure.ijm](#candidate_segmentation_measureijm)
     - [ROI_filtering.py](#roi_filteringpy)
 
 
 # Image J Approaches
+
+## Haralick Analysis
+File contents: Haralick analysis of cell ROIs
+
+### [Test_Data](./Haralick_Analysis/Test_Data/)
+
+folder containing the Test Data obtained frmo performing haralick analysis on different experiments
+
+### [Process_Haralick_ROIs.ijm](./Haralick_Analysis/Process_HaralickROIs.ijm)
+
+### [Haralick_plots.py](./Haralick_Analysis/Haralick_plots.py)
+
 
 ## [Process_Image.ijm](Process_Image.ijm)
 

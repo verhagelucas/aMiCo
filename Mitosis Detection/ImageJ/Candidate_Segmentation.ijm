@@ -1,7 +1,7 @@
-macro "Segment Cells Own" {
+macro "Candidate Segmentation" {
 //set parameters
 ignore_edges = true;
-min_sel_size = 0;
+min_sel_size = 10;
 
 // Select directory in which to save ROIs
 //dir_saveROIs = getDir("Select directory to save ROI list");
@@ -10,7 +10,6 @@ dir_saveROIs = getDirectory("image");
 //Image pre-processing
 
 title_OG = getTitle();
-print("Title " + title_OG)	//debug
 run("Duplicate...", "duplicate");
 rename("Duplicated");
 
@@ -80,7 +79,7 @@ if (ignore_edges) {
 	        nROIs = roiManager("count");	//set the new amount of ROIs for te loop
 	        continue;
 	    }
-	    
+	    close("Results");
 	    if ( (sel_width <= min_sel_size) || (sel_height <= min_sel_size)){	//remove dots smaller than 
 	    	run("Clear", "slice");  // delete content in that ROI
 	        roiManager("Delete");	//delete ROI as well
@@ -90,49 +89,19 @@ if (ignore_edges) {
 	    }
 	}
 }
-selectImage(title_OG);	//debugging
-dir_saveROIs = getInfo("image.directory");	//debugging
-print("dir_saveROIs = " + dir_saveROIs);	//DEBUGGING
 
-roiManager("Save", dir_saveROIs + "_RoiSet.zip");
+roiManager("Save", dir_saveROIs + "RoiSet.zip");
 
 
 //measure and extract kurtosis measurements (along with the slide of them)
 selectImage(title_OG);
-run("Set Measurements...", "standard center perimeter bounding kurtosis stack display redirect=None decimal=3");	// set what will get measured
+run("Set Measurements...", "standard center perimeter bounding skewness kurtosis stack display redirect=None decimal=3");	// set what will get measured
 roiManager("Deselect");
 roiManager("Measure");
-saveAs("Results", dir_saveROIs + "_Results.csv");
+saveAs("Results", dir_saveROIs + "Results.csv");
 
+//clean up
+close("Results");
+close("watershed_stack");
+close("Mask_1");
 }
-
-//
-//n = nResults;
-//kurtosis_values = newArray(n);
-//slide_numbers = newArray(n);
-//for (i = 0; i < n; i++) {
-//    kurtosis_values[i] = getResult("Kurt", i);
-//    slide_numbers[i] = getResult("Slice", i);
-//}
-//
-
-
-
-
-
-//Array.print(slide_numbers);
-//Array.print(kurtosis_values);
-
-//Array.show("Kurtosis", slide_numbers, kurtosis_values);
-
-//Plot.create ("Kurtosis", "slice", "kurtosis");
-//Plot.setLimits (0, 15, 0, 60);
-//Plot.setFrameSize (300, 200);
-//Plot.setBackgroundColor ("lightgray");
-//Plot.setColor ("blue", "red");
-//Plot.setLineWidth (2);
-//Plot.add ("triangle", kurtosis_values, slide_numbers);
-//Plot.setColor ("red", "red");
-//Plot.setLineWidth (1);
-//Plot.add ("line", data)
-//Plot.show ();
