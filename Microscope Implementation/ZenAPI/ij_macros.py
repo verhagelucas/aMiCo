@@ -102,40 +102,37 @@ showProgress(1, 1);//clear progress bar
 run("Label image to composite ROIs", "rm=[RoiManager[size=2285, visible=true]]");
 
 //REMOVE THE EDGE ROIs
-if (ignore_edges) {
-		
-	nROIs = roiManager("count");
-	width = getWidth();
-	height = getHeight();
-	
-	
-	for (roiIndex = 0; roiIndex < nROIs; roiIndex++) {	//loop over each ROI
-		
-	    roiManager("select", roiIndex);
-	    
-	    getBoundingRect(xMin, yMin, sel_width, sel_height);	// get ROI bounds
-	    
-	    // check border pixels against ROI bounds
-	    if (xMin == 0 || xMin + sel_width == width || 
-	    yMin == 0 || yMin + sel_height == height) { //if it's at the borders
-	    	
-	    	run("Clear", "slice");  // delete content in that ROI
-	        roiManager("Delete");	//delete ROI as well
-	        roiIndex --;	//check the new ROI that's taken the old one's place
-	        nROIs = roiManager("count");	//set the new amount of ROIs for te loop
-	        continue;
-	    }
-	    
-	    if ( (sel_width <= min_sel_size) || (sel_height <= min_sel_size)){	//remove dots smaller than 
-	    	run("Clear", "slice");  // delete content in that ROI
-	        roiManager("Delete");	//delete ROI as well
-	        roiIndex --;	//check the new ROI that's taken the old one's place
-	        nROIs = roiManager("count");	//set the new amount of ROIs for te loop
-	        continue;
-	    }
-	}
-}
 
+nROIs = roiManager("count");
+width = getWidth();
+height = getHeight();
+
+
+for (roiIndex = 0; roiIndex < nROIs; roiIndex++) {	//loop over each ROI
+	
+    roiManager("select", roiIndex);
+    
+    getBoundingRect(xMin, yMin, sel_width, sel_height);	// get ROI bounds
+    
+    // check border pixels against ROI bounds
+    if ((xMin == 0 || xMin + sel_width == width || 
+    yMin == 0 || yMin + sel_height == height) && ignore_edges) { //if it's at the borders and we want to ignore borders
+    	
+    	run("Clear", "slice");  // delete content in that ROI
+        roiManager("Delete");	//delete ROI as well
+        roiIndex --;	//check the new ROI that's taken the old one's place
+        nROIs = roiManager("count");	//set the new amount of ROIs for te loop
+        continue;
+    }
+    
+    if ( (sel_width <= min_sel_size) || (sel_height <= min_sel_size)){	//remove dots smaller than 
+    	run("Clear", "slice");  // delete content in that ROI
+        roiManager("Delete");	//delete ROI as well
+        roiIndex --;	//check the new ROI that's taken the old one's place
+        nROIs = roiManager("count");	//set the new amount of ROIs for te loop
+        continue;
+    }
+}
 
 roiManager("Save", path + "/RoiSet.zip");
 
