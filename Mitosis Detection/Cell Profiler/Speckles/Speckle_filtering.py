@@ -15,12 +15,12 @@ from tkinter import filedialog
 import os
 import shutil, glob
 
-speckle_thresholds = [75, 100, 150, 200]
+speckle_thresholds = [100, 150, 200, 210, 220, 230, 240, 250, 300, 450]
 
 
 ### define the common files (csv & images)
 file_path = filedialog.askopenfilename( #select excel file to be analysed
-    title="Select a file to analyse",
+    title="Select a csv file to analyse",
     filetypes=(("CSV files", "*.csv"), ("All files", "*.*"))
 )
 directory = os.path.dirname(file_path)  #extract directory path
