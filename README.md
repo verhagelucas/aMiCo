@@ -1,4 +1,4 @@
-# MEP file contents
+# Microscope Control contents
 - [Overview](#overview)
 - [Mitosis Detection](#mitosis-detection) 
     - [CellProfiler (CP)](#cell-profiler-approaches)
