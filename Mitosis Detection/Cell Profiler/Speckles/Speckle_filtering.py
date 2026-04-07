@@ -70,3 +70,5 @@ for speckle_threshold in speckle_thresholds:
                 for image in glob.glob(f"{img_src_dir}/*{t_frame+1}/*_{cell_num}.*"):   # t_fram+1 bcs CP starts counting at 1, not 0
                     shutil.copy(image,dir_detected_cells)
     #endregion
+
+    print("Done!")

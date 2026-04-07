@@ -1,4 +1,4 @@
-0) make sure Zen API gateway is installed
+0) make sure Zen API gateway is installed (for this Zen blue version must be greater than or equal to 3.13)
 
 1) install miniforge
 

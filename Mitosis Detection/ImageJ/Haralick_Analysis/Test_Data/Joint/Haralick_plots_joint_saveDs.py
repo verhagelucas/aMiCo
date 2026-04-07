@@ -77,6 +77,6 @@ for d in range(1,21):
         bbox_to_anchor=(0.98, 0.98)
     )
 
-    plt.savefig(output_directory+f"\\Haralick_Features_Over_Time_off_{d}.png", dpi=300, bbox_inches='tight')
+    #plt.savefig(output_directory+f"\\Haralick_Features_Over_Time_off_{d}.png", dpi=300, bbox_inches='tight')
 
-    # plt.show()
+    plt.show()

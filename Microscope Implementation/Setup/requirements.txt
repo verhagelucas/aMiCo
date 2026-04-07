@@ -1,6 +1,3 @@
-PYTHON ENV:
-Installed the pyautogui into the smartmic env (might not be needed in final)
-
 Making the imagej_smartmic env:
 Follow the steps on installation with the smartmic env
 
@@ -29,6 +26,8 @@ Install MorphoLibJ into fiji, instructions below:
     https://imagej.net/plugins/morpholibj
 
 Install BIOP into FIJI, from Update site PTBIOP.
+
+
 
 Install the own folder into the fiji plugin folder
 *optional, might not be needed if we dont use autopygui

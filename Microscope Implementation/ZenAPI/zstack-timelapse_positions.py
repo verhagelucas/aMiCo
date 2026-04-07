@@ -26,8 +26,8 @@ print_info = False
 overview_obj = 1
 zoomed_obj = 3
 
-#experiment_choice= "Zen_API_Test"
-experiment_choice= "Zen_API_Test_Z-stack"
+#exp_choice= "Zen_API_Test"
+exp_choice= "Zen_API_Test_Z-stack"
 zoomed_exp_choice = "Zen_API_Test_Timelapse"
 
 #select where to store your experiment
@@ -238,7 +238,7 @@ if __name__ == "__main__":
     logger = set_logging()
 
     # run the main function
-    results, time_array = asyncio.run(check_experiment_api(experiment_name_overview=experiment_choice,experiment_name_zoomed=zoomed_exp_choice, configfile=config_path))
+    results, time_array = asyncio.run(check_experiment_api(experiment_name_overview=exp_choice,experiment_name_zoomed=zoomed_exp_choice, configfile=config_path))
 
     print(results)
     print(time_array)
