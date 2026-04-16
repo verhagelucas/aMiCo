@@ -5,7 +5,10 @@ __pycache__/
 
 #own
 
-Mitosis Detection/DL/data-mitosis/
+Mitosis Detection/DL/data-mitosis/all
+Mitosis Detection/DL/simple_python_classifier/data-pro-meta-inter
+Mitosis Detection/ImageJ/Haralick_Analysis/Test_Data/Joint/haralick_offsets
+*.png
 # C extensions
 *.so
 
