@@ -5,13 +5,13 @@ import imagej
 from adjust_im_size import macro_pad_image
 
 # os.environ["JAVA_HOME"]=r"c:\Users\Student\miniforge3\envs\newAPI_env\Library\jre"
-ij = imagej.init(r"c:\Users\Student\Documents\Fiji\Fiji.app", mode = "interactive")
+# ij = imagej.init(r"c:\Users\Student\Documents\Fiji\Fiji.app", mode = "interactive")
 
 #region extract images
-root_dir = r"c:\\Users\\Student\\OneDrive-Maz\\OneDrive - Erasmus University Rotterdam\\MEP\\Maria\\Haralick Analysis\\Included"
+root_dir = r"c:\\Users\\Student\\OneDrive-Maz\\OneDrive - Erasmus University Rotterdam\\MEP\\Maria\\Haralick Analysis\\20260416"
 true_dir = r"C:\\Users\\Student\\Desktop\\MmM\\Code\\Microscope_Control\\Mitosis Detection\\DL\\data-mitosis\\all_new\\1"
 false_dir = r"C:\\Users\\Student\\Desktop\\MmM\\Code\\Microscope_Control\\Mitosis Detection\\DL\\data-mitosis\\all_new\\0"
-labels = pd.read_csv(r"C:\\Users\\Student\\Desktop\\MmM\\Code\\Microscope_Control\\Mitosis Detection\\DL\\Labelled1.csv", usecols=["Experiment", "Folder", "Target"])
+labels = pd.read_csv(r"C:\\Users\\Student\\Desktop\\MmM\\Code\\Microscope_Control\\Mitosis Detection\\DL\\Labelled_NewValidation.csv", usecols=["Experiment", "Folder", "Target"])
 
 position_paths = set(list(zip(labels["Experiment"], labels["Folder"])))
 
@@ -26,17 +26,17 @@ for path in position_paths:
         if file[-3:] == "csv" or file[-3:] == "zip":
             continue    # if file is not an image: ignore it and move on
         
-        dataset = ij.io().open(file)  # Open the Zstack
-        ij.ui().show(dataset)
+        # dataset = ij.io().open(file)  # Open the Zstack
+        # ij.ui().show(dataset)
 
-        args = {
-            'path': file,
-            'new_size': 512,
-        }
+        # args = {
+        #     'path': file,
+        #     'new_size': 512,
+        # }
 
-        # Process the image to get only 1 channel
-        #   Args used: path
-        ij.py.run_macro(macro_pad_image, args) 
+        # # Process the image to get only 1 channel
+        # #   Args used: path
+        # ij.py.run_macro(macro_pad_image, args) 
 
         if file[:-4] in targets:    # if name of file without extension in target list
             correct_counter += 1
