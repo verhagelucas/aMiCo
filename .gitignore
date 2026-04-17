@@ -3,12 +3,15 @@ __pycache__/
 *.py[codz]
 *$py.class
 
-#own
-
+# Own
+Microscope Implementation/Test_Data/test.py
 Mitosis Detection/DL/data-mitosis/all
 Mitosis Detection/DL/simple_python_classifier/data-pro-meta-inter
 Mitosis Detection/ImageJ/Haralick_Analysis/Test_Data/Joint/haralick_offsets
 *.png
+Mitosis Detection/python_tests
+.vscode
+
 # C extensions
 *.so
 
@@ -211,5 +214,5 @@ cython_debug/
 marimo/_static/
 marimo/_lsp/
 __marimo__/
-Microscope Implementation/Test_Data/test.py
+
 .gitignore

@@ -9,6 +9,8 @@ Install pyimagej package by:
     conda activate smartmic
     conda install pyimagej openjdk=8
 
+
+when creating imagej instance path given should point to the Fiji folder containing everithing
 if Error:
 “JVMNotFoundException: No JVM shared library file (libjvm.so) found. Try setting up 
 the JAVA_HOME environment variable properly.”
