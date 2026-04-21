@@ -60,7 +60,7 @@ class Net(nn.Module):
 
 datadir = r"C:\Users\Student\Desktop\MmM\Code\Microscope_Control\Mitosis Detection\DL\data-mitosis"
 
-transform = transforms.Compose([transforms.Resize((224,224)),
+transform = transforms.Compose([transforms.Resize((512,512)),
                                 transforms.Grayscale(num_output_channels=1),
                                 transforms.ToTensor(),
                                 transforms.Normalize(mean=[0.5],
