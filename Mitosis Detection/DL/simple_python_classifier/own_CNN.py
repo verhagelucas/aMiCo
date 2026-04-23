@@ -32,7 +32,7 @@ class Net(nn.Module):
         self.relu2 = nn.ReLU()
         self.max_pool2 = nn.MaxPool2d(2)
         
-        self.fc = nn.Linear(56*56*hidden_channels[1], out_features)
+        self.fc = nn.Linear(128*128*hidden_channels[1], out_features)
 
     def forward(self, x):
         # First convolutional layer
@@ -66,8 +66,8 @@ transform = transforms.Compose([transforms.Resize((512,512)),
                                 transforms.Normalize(mean=[0.5],
                                                      std=[0.5])])
 
-train_data = datasets.ImageFolder(root= datadir + r'/train', transform=transform)
-test_data = datasets.ImageFolder(root= datadir + r'/val', transform=transform)
+train_data = datasets.ImageFolder(root= datadir + r'/train_topleft', transform=transform)
+test_data = datasets.ImageFolder(root= datadir + r'/val_topleft', transform=transform)
 
 
 
@@ -110,8 +110,8 @@ out_features = 2
 
 
 # Training parameters
-learning_rate = 0.001
-epochs = 3
+learning_rate = 0.01
+epochs = 15
 
 
 
@@ -119,7 +119,7 @@ net = Net(in_channels, hidden_channels, out_features)
 optimizer = torch.optim.SGD(net.parameters(), lr = learning_rate)
 
 criterion = nn.CrossEntropyLoss()
-summary(net, (in_channels, 224, 224), device='cpu') # (in_channels, height, width)
+summary(net, (in_channels, 512, 512), device='cpu') # (in_channels, height, width)
 
 # Define list to store losses and performances of each iteration
 train_losses = []
@@ -172,6 +172,7 @@ for epoch in range(epochs):
     print('Accuracy of test set: {:.00f}%'.format(test_acc))
     print('')
 
+torch.save(net.state_dict(), "Mitosis Detection/DL/simple_python_classifier/own_model.pth")
 
 # Plot training curves
 plt.figure(figsize=(9,4))

@@ -52,8 +52,8 @@ datadir = "Mitosis Detection/DL/data-mitosis"
 
 print("datadir = " + datadir)
 
-train_dataset = ImageFolderDataset(datadir + r'/train', image_size=(224,224))
-val_dataset = ImageFolderDataset(datadir + r'/val', image_size=(224,224))
+train_dataset = ImageFolderDataset(datadir + r'/train', image_size=(512,512))
+val_dataset = ImageFolderDataset(datadir + r'/val', image_size=(512,512))
 
 train_loader = DataLoader(train_dataset, batch_size=16, shuffle=True)
 val_loader = DataLoader(val_dataset, batch_size=16, shuffle=False)
@@ -145,7 +145,7 @@ print(classify_image(datadir + '/val/beermug/010_0001.jpg', model, train_dataset
 """
 
 # --- Step 5: Classify a new image ---
-def classify_image(image_path, model, class_to_idx, image_size=(224,224)):
+def classify_image(image_path, model, class_to_idx, image_size=(512,512)):
     model.eval()
     transform = transforms.Compose([
         transforms.Resize(image_size),
