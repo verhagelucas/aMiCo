@@ -10,3 +10,4 @@ run("Canvas Size...", "width="+ new_size +" height="+ new_size +" position=Cente
 saveAs("Tiff", path);
 
 """
+

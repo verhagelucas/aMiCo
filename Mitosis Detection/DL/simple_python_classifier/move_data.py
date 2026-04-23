@@ -22,6 +22,7 @@ for path in position_paths:
     files = os.listdir(current_dir) #get file list of all images in the experiment's postion
     targets = list(labels[(labels["Experiment"] == path[0]) & (labels["Folder"] == path[1])]["Target"]) # extract taget labels
     ignore = list(labels[(labels["Experiment"] == path[0]) & (labels["Folder"] == path[1])]["Ignore"]) # extract labels to ignore
+    frame_ignore = list(int(labels[(labels["Experiment"] == path[0]) & (labels["Folder"] == path[1])]["Frame_Ignore"]))  #select the frames for each experiment that must be ignored
 
     for file in files:
         if file[-3:] == "csv" or file[-3:] == "zip":
@@ -31,6 +32,9 @@ for path in position_paths:
             correct_counter += 1
             shutil.copy(f"{current_dir}\\{file}", f"{true_dir}\\{path[0]}_{path[1]}_{file}") # copy file to the true folder"
         elif file[:-4] in ignore:
+            continue
+        elif int(file[:4]) in frame_ignore:
+            print(frame_ignore)
             continue
         else:
             shutil.copy(f"{current_dir}\\{file}", f"{false_dir}\\{path[0]}_{path[1]}_{file}")
