@@ -29,7 +29,7 @@ for path in position_paths:
 
         if file[:-4] in targets:    # if name of file without extension in target list
             correct_counter += 1
-            shutil.copy(f"{current_dir}\\{file}", true_dir) # copy file to the true folder"
+            shutil.copy(f"{current_dir}\\{file}", f"{true_dir}\\{path[0]}_{path[1]}_{file}") # copy file to the true folder"
         elif file[:-4] in ignore:
             continue
         else:
