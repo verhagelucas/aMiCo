@@ -11,6 +11,7 @@ Mitosis Detection/ImageJ/Haralick_Analysis/Test_Data/Joint/haralick_offsets
 *.png
 Mitosis Detection/python_tests
 .vscode
+Mitosis Detection/DL/data-mitosis
 
 # C extensions
 *.so
