@@ -58,7 +58,7 @@ class Net(nn.Module):
 # Preprocessing data: convert to tensors and normalize by subtracting dataset
 # mean and dividing by std.
 
-datadir = r"C:\Users\Student\Desktop\MmM\Code\Microscope_Control\Mitosis Detection\DL\data-mitosis"
+datadir = r"C:\Users\Student\Desktop\MmM\Code\Microscope_Control\Mitosis Detection\DL\data-mitosis\topleft"
 
 transform = transforms.Compose([transforms.Resize((512,512)),
                                 transforms.Grayscale(num_output_channels=1),
@@ -110,8 +110,8 @@ out_features = 2
 
 
 # Training parameters
-learning_rate = 0.01
-epochs = 15
+learning_rate = 0.001
+epochs = 5
 
 
 
