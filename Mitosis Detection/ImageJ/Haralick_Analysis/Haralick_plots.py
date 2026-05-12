@@ -6,27 +6,17 @@ from sklearn.preprocessing import MinMaxScaler
 # haralick_directory = r"Mitosis Detection\ImageJ\Haralick_Analysis\Test_Data\20251211"
 # target_label = "0020_0003"  # label of the ROI with the condensed DNA
 # output_directory = r"Mitosis Detection\ImageJ\Haralick_Analysis\Test_Data\20251211"
-haralick_directory = r"c:\Users\Student\OneDrive-Maz\OneDrive - Erasmus University Rotterdam\MEP\Maria\Haralick_plots\FollowROIs\20251128\Pos1\Cell1\normal_images"
-output_directory = r"c:\Users\Student\OneDrive-Maz\OneDrive - Erasmus University Rotterdam\MEP\Maria\Haralick_plots\FollowROIs\20251128\Pos1\Cell1\normal_images"
-target_label = "0030_0007"
+haralick_directory = r"c:\Users\Student\OneDrive-Maz\OneDrive - Erasmus University Rotterdam\MEP\Maria\Haralick_plots\FollowROIs\20251128\Pos1\Cell7\gaussian-blur"
+output_directory = r"c:\Users\Student\OneDrive-Maz\OneDrive - Erasmus University Rotterdam\MEP\Maria\Haralick_plots\FollowROIs\20251128\Pos1\Cell7\gaussian-blur"
+target_label = "0027_0035"
+# offset = 3
+
+allcells_directory = r"c:\Users\Student\OneDrive-Maz\OneDrive - Erasmus University Rotterdam\MEP\Maria\Haralick_plots\FollowROIs\20251128\Pos1\Whole\AllCells\gaussian-blur"
 
 features = ["H1","H2", "H3", "H4","H5","H6","H7","H8","H9","H10","H11"]
 
-haralick_df = pd.read_csv(haralick_directory+r"\Results_Haralick_d_1.csv", 
-                          usecols=features)
-files_df = pd.read_csv(haralick_directory+r"\Files_list.csv",
-                       header=0,names=["ROI_label"])
 
-whole_df = pd.concat([haralick_df,files_df], axis=1)
-
-# Find index of the target label
-
-try:
-    target_idx = whole_df.index[whole_df["ROI_label"] == target_label][0]
-except IndexError:
-    raise ValueError(f"Label {target_label} not found in ROI_label column")
-
-def plot_haralick(df, title, save_path):
+def plot_haralick(df, title, save_path, show = True, save = True):
     # Create 3x4 grid of subplots
     fig, axes = plt.subplots(3, 4, figsize=(16, 10), sharex=True)
     axes = axes.flatten()  # make it 1D for easy indexing
@@ -51,50 +41,85 @@ def plot_haralick(df, title, save_path):
     fig.suptitle(title, fontsize=16)
     plt.tight_layout(rect=[0, 0, 1, 0.96])  # leave space for suptitle
 
-    plt.savefig(save_path, dpi=300, bbox_inches='tight')
+    if save: plt.savefig(save_path, dpi=300, bbox_inches='tight')
 
-    plt.show()
+    if show: plt.show()
+
+    plt.close()
+
+for offset in [1,2,3,4,5]:
+
+    haralick_df = pd.read_csv(haralick_directory+r"\Results_Haralick_d_"+str(offset)+".csv", 
+                            usecols=features)
+    files_df = pd.read_csv(haralick_directory+r"\Files_list.csv",
+                        header=0,names=["ROI_label"])
+
+    whole_df = pd.concat([haralick_df,files_df], axis=1)    # df containing the measurements of the cell of interest
+
+    # Find index of the target label
+
+    try:
+        target_idx = whole_df.index[whole_df["ROI_label"] == target_label][0]
+    except IndexError:
+        raise ValueError(f"Label {target_label} not found in ROI_label column")
 
 
-#normalise between 0&1
-norm_df = whole_df.copy()
-scaler = MinMaxScaler()
-norm_df[features] = scaler.fit_transform(norm_df[features])
+    #normalise between 0&1
+    norm_df = whole_df.copy()
+    scaler = MinMaxScaler()
+    norm_df[features] = scaler.fit_transform(norm_df[features])
 
 
-# Correct for haralick using average haralick at frame
-allcells_directory = r"c:\Users\Student\OneDrive-Maz\OneDrive - Erasmus University Rotterdam\MEP\Maria\Haralick_plots\FollowROIs\20251128\Pos1\AllCells"
-full_haralick_df = pd.read_csv(allcells_directory+r"\Full_Results_Haralick_d_1.csv", 
-                               usecols=features)
-full_files_df = pd.read_csv(allcells_directory+r"\Full_Files_list.csv",
-                            header=0,names=["ROI_label"])
+    # Correct for haralick using average haralick at frame
+    full_haralick_df = pd.read_csv(allcells_directory+r"\Full_Results_Haralick_d_"+str(offset)+".csv", 
+                                usecols=features)
+    full_files_df = pd.read_csv(allcells_directory+r"\Full_Files_list.csv",
+                                header=0,names=["ROI_label"])
 
-full_whole_df = pd.concat([full_haralick_df,full_files_df], axis=1)
+    full_whole_df = pd.concat([full_haralick_df,full_files_df], axis=1)
 
-#look at difference between value and mean
-last_slice = whole_df["ROI_label"].index[-1]    # get the last frame we are interested in (avoid unnecessary calculations)
+    #look at difference between value and mean
+    last_slice = whole_df["ROI_label"].index[-1]    # get the last frame we are interested in (avoid unnecessary calculations)
 
-# Calculate avg for each frame
-adjusted_dfs = []  # List to collect adjusted values
+    # Calculate avg for each frame
+    adjusted_dfs = []  # List to collect adjusted values
+    running_dfs = []  # create a storage array that keeps track of the current haralick average
 
-for slice in range(1, last_slice+1):
-    prefix = f"{slice:04d}"
+    running_mean_den = np.zeros(len(features))  # create a storage array that keeps track of the current haralick average denominator
+    running_mean_num = 0  # create a storage array that keeps track of the current haralick average numerator
     
-    # Get the means of all the haralicks in that slice
-    slice_haralicks = full_whole_df[full_whole_df["ROI_label"].str.startswith(prefix, na=False)][features]
-    means = slice_haralicks.mean().values 
-    
-    # GEt the haralicks of the ROIs we are interested in
-    relevant_ROIs = whole_df[whole_df["ROI_label"].str.startswith(prefix, na=False)][features]
-    
-    # Look at how far the individual interest haralick is from the mean
-    adjusted_slice = relevant_ROIs - means
-    
-    adjusted_dfs.append(adjusted_slice)
 
-adjusted_df = pd.concat(adjusted_dfs)   # make into df
-adjusted_df = pd.concat([adjusted_df,files_df], axis=1)
+    for slice in whole_df["ROI_label"]:
+        prefix = slice[:4]
+        
+        # Get the means of all the haralicks in that slice
+        slice_haralicks = full_whole_df[full_whole_df["ROI_label"].str.startswith(prefix, na=False)][features]
 
-# plot_haralick(df= [whole_df], title= "Haralick Features Over Time\nd_1", save_path=output_directory+r"\Haralick_Features_Over_Time_d_1.png")
-# plot_haralick(df= [norm_df], title= "Normalised Haralick Features Over Time\nd_1", save_path=output_directory+r"\Normalised_Haralick_Features_Over_Time_d_1.png")
-# plot_haralick(df= [adjusted_df], title= "Adjusted Haralick Features Over Time\nd_1", save_path=output_directory+r"\Adjusted_Haralick_Features_Over_Time_d_1.png")
+        running_mean_den += slice_haralicks.sum().values
+        running_mean_num += slice_haralicks.index[-1]
+
+        running_mean = running_mean_den / running_mean_num
+
+        means = slice_haralicks.mean().values # mean of the current frame
+        
+        # GEt the haralicks of the ROIs we are interested in
+        relevant_ROIs = whole_df[whole_df["ROI_label"].str.startswith(prefix, na=False)][features]
+        
+        # Look at how far the individual interest haralick is from the mean
+        adjusted_slice = relevant_ROIs - means
+        running_slice = relevant_ROIs - running_mean
+        
+        adjusted_dfs.append(adjusted_slice)
+        running_dfs.append(running_slice)
+
+    adjusted_df = pd.concat(adjusted_dfs)   # make into df
+    running_df = pd.concat(running_dfs)   # make into df
+    adjusted_df = pd.concat([adjusted_df,files_df], axis=1)
+    running_df = pd.concat([running_df,files_df], axis=1)
+
+
+
+    plot_haralick(df= [whole_df], title= "Raw\nHaralick Features Over Time\nd_"+str(offset)+"", save_path=output_directory+r"\Haralick_Features_Over_Time_d_"+str(offset)+".png", show=False)
+    plot_haralick(df= [norm_df], title= "Normalised\nHaralick Features Over Time\nd_"+str(offset)+"", save_path=output_directory+r"\Normalised_Haralick_Features_Over_Time_d_"+str(offset)+".png", show=False)
+    plot_haralick(df= [adjusted_df], title= "Adjusted\nHaralick Features Over Time\nd_"+str(offset)+"", save_path=output_directory+r"\Adjusted_Haralick_Features_Over_Time_d_"+str(offset)+".png", show=False)
+    plot_haralick(df= [adjusted_df], title= "Adjusted Running Avg\nHaralick Features Over Time\nd_"+str(offset)+"", save_path=output_directory+r"\Running-mean_Haralick_Features_Over_Time_d_"+str(offset)+".png", show=False)

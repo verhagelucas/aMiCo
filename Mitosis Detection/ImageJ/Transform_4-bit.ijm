@@ -7,8 +7,11 @@ slices = nSlices;
 
 run("8-bit");	//make sure image is 8 bits
 
+setBatchMode(true);
 for (i = 0; i < slices; i++) {
 	setSlice(i+1);
+	
+	
 	// Loop through each pixel
 	for (y = 0; y < height; y++) {
 	    for (x = 0; x < width; x++) {
@@ -22,9 +25,10 @@ for (i = 0; i < slices; i++) {
 	        putPixel(x, y, newVal);
 	    }
 	}
-
+	
 }
 setMinAndMax(0, 15);	// make image visible
+setBatchMode(false);
 
 // Save the resulting "4bit" image
 //saveAs("Tiff", outDir+substring(ogImage, 0, ogImage.length-4)+".tif");
