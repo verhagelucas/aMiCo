@@ -3,18 +3,19 @@ import pandas as pd
 import numpy as np
 from sklearn.preprocessing import MinMaxScaler
 
-# haralick_directory = r"Mitosis Detection\ImageJ\Haralick_Analysis\Test_Data\20251211"
-# target_label = "0020_0003"  # label of the ROI with the condensed DNA
-# output_directory = r"Mitosis Detection\ImageJ\Haralick_Analysis\Test_Data\20251211"
-haralick_directory = r"c:\Users\Student\OneDrive-Maz\OneDrive - Erasmus University Rotterdam\MEP\Maria\Haralick_plots\FollowROIs\20251128\Pos1\Cell7\gaussian-blur"
-output_directory = r"c:\Users\Student\OneDrive-Maz\OneDrive - Erasmus University Rotterdam\MEP\Maria\Haralick_plots\FollowROIs\20251128\Pos1\Cell7\gaussian-blur"
-target_label = "0027_0035"
-# offset = 3
+from target_dict import targets_20251128_Pos1, targets_20260416_Pos7
 
-allcells_directory = r"c:\Users\Student\OneDrive-Maz\OneDrive - Erasmus University Rotterdam\MEP\Maria\Haralick_plots\FollowROIs\20251128\Pos1\Whole\AllCells\gaussian-blur"
+haralick_directory = "c:\\Users\\Student\\OneDrive-Maz\\OneDrive - Erasmus University Rotterdam\\MEP\\Maria\\Haralick_plots\\FollowROIs\\20251128\\Pos1\\Cell5\\gaussian-blur"
+output_directory = "c:\\Users\\Student\\OneDrive-Maz\\OneDrive - Erasmus University Rotterdam\\MEP\\Maria\\Haralick_plots\\FollowROIs\\20251128\\Pos1\\Cell5\\gaussian-blur"
+allcells_directory = "c:\\Users\\Student\\OneDrive-Maz\\OneDrive - Erasmus University Rotterdam\\MEP\\Maria\\Haralick_plots\\FollowROIs\\20251128\\Pos1\\AllCells\\gaussian-blur"
+
+targets_dict = targets_20251128_Pos1
 
 features = ["H1","H2", "H3", "H4","H5","H6","H7","H8","H9","H10","H11"]
+offsets = [1, 2, 3, 4, 5]
 
+parts = haralick_directory.rsplit("\\", 2)
+target_label = targets_dict[parts[-2]]
 
 def plot_haralick(df, title, save_path, show = True, save = True):
     # Create 3x4 grid of subplots
@@ -47,7 +48,10 @@ def plot_haralick(df, title, save_path, show = True, save = True):
 
     plt.close()
 
-for offset in [1,2,3,4,5]:
+
+print(f"Looking at {parts[-2]}, with preprocessing: {parts[-1]}")
+
+for offset in offsets:
 
     haralick_df = pd.read_csv(haralick_directory+r"\Results_Haralick_d_"+str(offset)+".csv", 
                             usecols=features)
@@ -90,11 +94,12 @@ for offset in [1,2,3,4,5]:
     
 
     for slice in whole_df["ROI_label"]:
-        prefix = slice[:4]
+        prefix = slice[:4]  #extract slice label
         
         # Get the means of all the haralicks in that slice
         slice_haralicks = full_whole_df[full_whole_df["ROI_label"].str.startswith(prefix, na=False)][features]
 
+        # update running average values
         running_mean_den += slice_haralicks.sum().values
         running_mean_num += slice_haralicks.index[-1]
 
@@ -112,14 +117,16 @@ for offset in [1,2,3,4,5]:
         adjusted_dfs.append(adjusted_slice)
         running_dfs.append(running_slice)
 
-    adjusted_df = pd.concat(adjusted_dfs)   # make into df
-    running_df = pd.concat(running_dfs)   # make into df
-    adjusted_df = pd.concat([adjusted_df,files_df], axis=1)
-    running_df = pd.concat([running_df,files_df], axis=1)
+    adjusted_df, running_df = pd.concat(adjusted_dfs), pd.concat(running_dfs)   # make into df
+    adjusted_df, running_df = pd.concat([adjusted_df,files_df], axis=1), pd.concat([running_df,files_df], axis=1)   # add ROI_labels column
 
 
 
-    plot_haralick(df= [whole_df], title= "Raw\nHaralick Features Over Time\nd_"+str(offset)+"", save_path=output_directory+r"\Haralick_Features_Over_Time_d_"+str(offset)+".png", show=False)
-    plot_haralick(df= [norm_df], title= "Normalised\nHaralick Features Over Time\nd_"+str(offset)+"", save_path=output_directory+r"\Normalised_Haralick_Features_Over_Time_d_"+str(offset)+".png", show=False)
-    plot_haralick(df= [adjusted_df], title= "Adjusted\nHaralick Features Over Time\nd_"+str(offset)+"", save_path=output_directory+r"\Adjusted_Haralick_Features_Over_Time_d_"+str(offset)+".png", show=False)
-    plot_haralick(df= [adjusted_df], title= "Adjusted Running Avg\nHaralick Features Over Time\nd_"+str(offset)+"", save_path=output_directory+r"\Running-mean_Haralick_Features_Over_Time_d_"+str(offset)+".png", show=False)
+
+    # Plot the features
+    plot_haralick(df= [whole_df], title="Raw\nHaralick Features Over Time\nd_"+str(offset)+"", save_path=output_directory+r"\Haralick_Features_Over_Time_d_"+str(offset)+".png", show=False)
+    plot_haralick(df= [norm_df], title="Normalised\nHaralick Features Over Time\nd_"+str(offset)+"", save_path=output_directory+r"\Normalised_Haralick_Features_Over_Time_d_"+str(offset)+".png", show=False)
+    plot_haralick(df= [adjusted_df], title="Adjusted\nHaralick Features Over Time\nd_"+str(offset)+"", save_path=output_directory+r"\Adjusted_Haralick_Features_Over_Time_d_"+str(offset)+".png", show=False)
+    plot_haralick(df= [running_df], title="Adjusted Running Avg\nHaralick Features Over Time\nd_"+str(offset)+"", save_path=output_directory+r"\Running-mean_Haralick_Features_Over_Time_d_"+str(offset)+".png", show=False)
+
+print("Done!")
