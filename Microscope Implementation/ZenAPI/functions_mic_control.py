@@ -53,6 +53,13 @@ from zen_api.acquisition.v1beta import (
     ExperimentServiceStartExperimentRequest,
 )
 
+from zen_api.lm.acquisition.v1 import (
+    ZStackServiceStub,
+    ZStackServiceGetZStackInfoRequest,
+    ZStackServiceModifyZStackCenterRangeRequest,
+    ZStackServiceModifyZStackFirstLastRequest,
+)
+
 from zen_api.acquisition.v1beta import (
     ExperimentServiceStub,
     ExperimentServiceLoadRequest,
@@ -218,14 +225,16 @@ async def take_timelapse(experiment_service, zoomed_experiment_setup, save_path,
     return results_dict[dict_key]    # returns the path of the image file
 
 
-async def take_zstack(experiment_service, experiment_setup, save_path, destination_path, results_dict, pos_index, zoomed):
+async def take_zstack(zstack_service, experiment_service, experiment_setup, center_z, save_path, destination_path, results_dict, pos_index, zoomed):
     '''
     Starts an experiment with the current view of the microscope & stores it 
     as Z-Exp name
 
     Args:
+        zstack_Service: microscope's zstack services
         experiment_service: microscope's experiment services
         experiment_setup: loaded experiment for z-stack moment
+        center_z: center of the zstack in μm
         save_path: default path where Zen saves images
         destination_path: path where the snap will be stored in
         results_dict: dictionary where the snaps and their paths are all stored together
@@ -245,6 +254,15 @@ async def take_zstack(experiment_service, experiment_setup, save_path, destinati
         dict_key = f"Z-exp_path_{pos_index}"
         out_name = f"Pos{pos_index}_Z-Exp"
         
+    # modify the z-stack to have center at autofocus position with a range of 9
+    await zstack_service.modify_z_stack_center_range(
+        ZStackServiceModifyZStackCenterRangeRequest(
+            experiment_id=experiment_setup.experiment_id,
+            center=center_z,
+            interval=1 * 1e-6,
+            range=9 * 1e-6,
+        )
+    )
 
     exp_result = await experiment_service.run_experiment(
         ExperimentServiceRunExperimentRequest(experiment_id=experiment_setup.experiment_id, output_name=out_name)
