@@ -225,9 +225,9 @@ async def take_timelapse(experiment_service, zoomed_experiment_setup, save_path,
     return results_dict[dict_key]    # returns the path of the image file
 
 
-async def take_zstack(zstack_service, experiment_service, experiment_setup, center_z, save_path, destination_path, results_dict, pos_index, zoomed):
+async def take_zstack(zstack_service, experiment_service, experiment_setup, center_z, save_path, destination_path, results_dict, pos_index, zoomed, zstack_interval=1,zstack_range=9):
     '''
-    Starts an experiment with the current view of the microscope & stores it 
+    Starts an experiment with the current view of the microscope at specified z slice & stores it 
     as Z-Exp name
 
     Args:
@@ -257,10 +257,10 @@ async def take_zstack(zstack_service, experiment_service, experiment_setup, cent
     # modify the z-stack to have center at autofocus position with a range of 9
     await zstack_service.modify_z_stack_center_range(
         ZStackServiceModifyZStackCenterRangeRequest(
-            experiment_id=experiment_setup.experiment_id,
-            center=center_z,
-            interval=1 * 1e-6,
-            range=9 * 1e-6,
+            experiment_id = experiment_setup.experiment_id,
+            center = center_z,
+            interval = zstack_interval * 1e-6,
+            range = zstack_range * 1e-6,
         )
     )
 
