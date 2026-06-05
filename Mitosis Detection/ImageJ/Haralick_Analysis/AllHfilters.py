@@ -16,7 +16,7 @@ from sklearn.preprocessing import MinMaxScaler
 
 # 5) Store the results into csv 
 # 6) Also store the measurement results into csv to get the coordinates where we move
-# 6) OPTION2: Make imgej macro that giving it the name of the roi = ouutputs coordinates (cant do that nvm ijm outputs dont work in the version we have)
+# 6) OPTION2: Make imagej macro that giving it the name of the roi = ouutputs coordinates (cant do that nvm ijm outputs dont work in the version we have)
 
 allcells_directory = "c:\\Users\\Student\\OneDrive-Maz\\OneDrive - Erasmus University Rotterdam\\MEP\\Maria\\Haralick_plots\\FollowROIs\\20251128\\Pos1\\AllCells\\4-bit"
 
