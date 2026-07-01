@@ -1,4 +1,4 @@
-# Microscope Control contents
+# aMiCo: Automated Microscope Control repository contents
 - [Overview](#overview)
 - [Mitosis Detection](#mitosis-detection) 
     - [CellProfiler (CP)](#cell-profiler-approaches)
