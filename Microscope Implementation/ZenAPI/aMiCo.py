@@ -27,10 +27,7 @@ print_info = True
 overview_obj = 4
 zoomed_obj = 5
 
-#experiment_choice= "Zen_API_Test"
-# experiment_choice= "Zen_API_Test_Z-stack"
 experiment_choice= "Zen_API_Auto_Z-stack_Exp"
-# zoomed_exp_choice = "Zen_API_Test_Timelapse"
 zoomed_exp_choice = "Zen_API_Auto_Timelapse-Z-stack_Exp"
 
 
@@ -48,7 +45,7 @@ timepoints = int(input("Timepoints:"))
 #TODO: add a minimum set time between the timepoints where if the scans are done before it they wait
 
 
-# select positions in zen software >> File >> Tiles >> Export Tile Experiment >>
+# select positions in zen software >> File >> Tiles >> Export Tile Experiment >> csv
 # >> Save in folder where you'll save your experiment as a .CSV file named "positions"
 points = pd.read_csv(f"{selected_folder}/positions.csv",usecols=["X","Y","Z"])
 pos_list = points.values.tolist()

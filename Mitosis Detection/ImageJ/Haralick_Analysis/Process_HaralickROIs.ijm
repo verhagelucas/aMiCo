@@ -1,54 +1,72 @@
-//1) Run Candidate segmentation
-// run("Candidate Segmentation");
+ogImage = getTitle();
 
-//2) Keep only ROIs of the one cell we want to track
-// go through each ROI and decide keep/delete
-
-//3)Crop out the selected ROIs
-// Define output directory
-outDir = getDirectory("Choose output directory for the cell images");
-
-// Perform multi-crop to get a stack
-RoiManager.multiCrop(outDir, "show");
-
-// Go through all ROIs & Calculate haralick features
-roiManager("List");
 numberOfROIs = roiManager("count");
+
+
+//max_offset = getNumber("Calculate up to Haralick offset d = ", 5);
+starting_offset = 1
+max_offset = 5;	//TODO: make into @int input
 label_list = newArray(numberOfROIs);
+outDir_results = getDirectory("Choose output directory for the Harlick results");	//TODO: make into @string input
 
-for (i = 0; i < numberOfROIs; i++) {
-    // Get the name of the ROI from the overlay
-    ROIName = getResultString("Name", i, "Overlay Elements of CROPPED_ROI Manager");
-    save_ROIName = substring(ROIName, 0, 4) + "_" + substring(ROIName, 10, ROIName.length);
-    label_list[i]=save_ROIName;	//store index of the file for later use in python
-    
-    // Select the specific slice in the cropped stack
-    selectWindow("CROPPED_ROI Manager");
-    setSlice(i + 1);
-    
-    // Duplicate the slice with the desired filename
-    run("Duplicate...", "title=" + save_ROIName);
-    
-    // Calculate Haralick features of image
-    run("HaralickFilter ", "image="+save_ROIName+" offset=1");
-    
-    // Save the duplicated image with the ROI name
-    saveAs("tif", outDir + save_ROIName + ".tif");
-    
-    // Close the temporary window
-    close();
+
+for (roiIndex = 0; roiIndex < numberOfROIs; roiIndex++) {
+	//go through the ROIs and extract the cells into individual images
+	// (this has to happen outside of batch mode to open the image files
+		
+		//find the cell in the overall image
+		selectImage(ogImage);
+		roiManager("select", roiIndex);
+		ROIName = getInfo("roi.name");
+		save_name = substring(ROIName, 0, 4) + "_" + substring(ROIName, 10, ROIName.length);
+		//extract the cell to its own image
+		run("Duplicate...", "title="+save_name);
+		selectImage(save_name);
+		setBackgroundColor(0, 0, 0);
+		run("Clear Outside");
+		run("Select None");
+		label_list[roiIndex]=save_name;	//store file name for later use in haralick calculation and python
 }
+//take out all indiv cells
 
-//Clean up UI
-close("Overlay Elements of CROPPED_ROI Manager");
-close("CROPPED_ROI Manager");
-close("Log");
 
-// save Haralick results
-saveAs("Results", outDir+"Results_Haralick.csv");
-close("Results")
+setBatchMode(true);
+for (offset = starting_offset; offset <= max_offset; offset++) {
+	//loop over the diff haralick distances to calculate
+		
+	for (i = 0; i < lengthOf(label_list); i++) {
 
-// save ROI_label information
-Array.show("Files list", label_list);
-saveAs("Results", outDir+"Files_list.csv");
-close("Files_list.csv");
+		save_name = label_list[i];
+		//Transform cell into normalised 4-bit image the first time haralick is calculated
+		if (offset==starting_offset) {
+			selectImage(save_name);
+			run("Transform 4-bit");
+			postfix="_4bit";
+		}
+
+		// Calculate Haralick features of transformed image
+    	run("HaralickFilter ", "image="+save_name+" offset="+offset);
+		
+	}
+	
+	saveImages = false;	//if we want to save images only saved in the first run
+	
+
+	
+	// save Haralick results
+	saveAs("Results", outDir_results+"Results_Haralick_d_"+offset+postfix+".csv");
+	close("Results");
+	
+	if (!File.exists(outDir_results+"Files_list.csv")) {
+		// save ROI_label information if not already saved
+		Array.show("Files list", label_list);
+		saveAs("Results", outDir_results+"Files_list.csv");
+		close("Files_list.csv");
+	}
+	
+	//Clean up UI
+	close("Log");
+}
+setBatchMode(false);
+close("*");	//Close all images
+
