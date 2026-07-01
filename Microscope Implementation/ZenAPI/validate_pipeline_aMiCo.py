@@ -12,8 +12,8 @@
 # as long as this copyright notice remains part of the code.
 #################################################################
 
-from functions_mic_control import *
-from functions_imageJ_interact import *
+from MiCo_functions import *
+from decision_functions import *
 
 
 # Get the directory where the current script is located
@@ -22,13 +22,15 @@ script_dir = Path(__file__).parent
 # Build the path to config.ini relative to the script
 config_path = script_dir / "config.ini"
 
-print_info = False
-overview_obj = 1
-zoomed_obj = 3
 
-#exp_choice= "Zen_API_Test"
-exp_choice= "Zen_API_Test_Z-stack"
-zoomed_exp_choice = "Zen_API_Test_Timelapse"
+print_info = True
+overview_obj = 4
+zoomed_obj = 5
+
+experiment_choice= "aMiCo_Z-stack_Exp"
+zoomed_exp_choice = "aMiCo_Timelapse-Z-stack_Exp"
+
+
 
 #select where to store your experiment
 
@@ -42,10 +44,12 @@ os.mkdir(experiment_folder)
 timepoints = int(input("Timepoints:"))
 #TODO: add a minimum set time between the timepoints where if the scans are done before it they wait
 
+
 # select positions in zen software >> File >> Tiles >> Export Tile Experiment >>
 # >> Save in folder where you'll save your experiment as a .CSV file named "positions"
-points = pd.read_csv(f"{selected_folder}/positions.csv",usecols=["X","Y"])
+points = pd.read_csv(f"{selected_folder}/positions.csv",usecols=["X","Y","Z"])
 pos_list = points.values.tolist()
+
 
 #Initialise the JVM environment
 os.environ["JAVA_HOME"] =r"C:\Users\Zen-user\.conda\envs\newAPI_env\Library\jre"
@@ -54,7 +58,7 @@ ij = imagej.init(r"C:\Fiji", mode = "interactive")
 
 
 
-#TODO: consider turning the location results dict into a time dict that tells you when the images were taken
+
 async def check_experiment_api(experiment_name_overview: str, experiment_name_zoomed: str, configfile: str = "config.ini") -> Dict[str, Union[str, Path]]:
 
     results = {}    # keep track of files
@@ -63,6 +67,7 @@ async def check_experiment_api(experiment_name_overview: str, experiment_name_zo
     # get the gRPC channel and the metadata
     channel, metadata = initialize_zenapi(configfile)
 
+
     #region get microscope services
     # get objective services
     objchanger_service = ObjectiveChangerServiceStub(channel=channel, metadata=metadata)
@@ -70,15 +75,19 @@ async def check_experiment_api(experiment_name_overview: str, experiment_name_zo
     simple_stage_service = StageServiceStub(channel=channel, metadata=metadata)
     # get the experiment service
     exp_service = ExperimentServiceStub(channel=channel, metadata=metadata)
+    # get zstack experiment service
+    zstack_service = ZStackServiceStub(channel=channel, metadata=metadata)
     # get SWAF_service
     swaf_service = ExperimentSwAutofocusServiceStub(channel=channel, metadata=metadata)
     # get focus stage service
     focus_service = FocusServiceStub(channel=channel, metadata=metadata)
     #endregion
 
+
     # show output path for images
     save_path = await exp_service.get_image_output_path(ExperimentServiceGetImageOutputPathRequest())
     logger.info("Default saving Location for CZI Images:" + save_path.image_output_path)
+
 
     # load experiments by their names without the *.czexp extension
     exp_setup_overview = await exp_service.load(ExperimentServiceLoadRequest(experiment_name=experiment_name_overview))
@@ -115,7 +124,7 @@ async def check_experiment_api(experiment_name_overview: str, experiment_name_zo
 
         # get the initial stage positions in [m]
         init_posXY = await simple_stage_service.get_position(StageServiceGetPositionRequest())
-        logger.info(f"Stage XY Position initial: {np.round(init_posXY.x * 1e6, 2)} - {np.round(init_posXY.y * 1e6, 2)} [micron]")
+        logger.info(f"Stage XY Position initial: {np.round(init_posXY.x * 1e6, 2)} - {np.round(init_posXY.y * 1e6, 2)}[micron]")
 
         #  get Z-Position
         posZ_1 = await focus_service.get_position(StageServiceGetPositionRequest())
@@ -134,61 +143,78 @@ async def check_experiment_api(experiment_name_overview: str, experiment_name_zo
         time_folder = f"{experiment_folder}/timepoint_{t+1}"
         os.mkdir(time_folder)   #create folder pertimepoint in which to store images
 
+
         for i,pos in enumerate(pos_list):
 
             logger.info(f"--------------------------- Position: {i} ------------------------------")
-            current_x, current_y = pos[0]*1e-6, pos[1]*1e-6
 
-            await stage_over_scan(simple_stage_service, current_x, current_y) #move to current "tile"
-            logger.info(f"Stage XY Position: {np.round(current_x * 1e6, 2)} - {np.round(current_y * 1e6, 2)} [micron]\n")
 
-            #autofocus
-            # await autofocus(swaf_service, focus_service, exp_setup_overview)  #TODO change to only focus if needed
+            current_x, current_y, current_z = pos[0]*1e-6, pos[1]*1e-6, pos[2]*1e-6 #extract position coordinates and convert to m
+
+            moved_x, moved_y, moved_z = await change_FOV(simple_stage_service, focus_service, objchanger_service, current_x, current_y, current_z, overview_obj)  # move to current "tile"and make sure overview objective in use
+            logger.info(f"Stage XYZ Position: {np.round(moved_x * 1e6, 2)} - {np.round(moved_y * 1e6, 2)} - {np.round(moved_z * 1e6, 2)} [micron]\n")
+
+            # autofocus
+            new_posz = await autofocus(swaf_service, focus_service, exp_setup_overview, zoomed=False) 
+            logger.info(f"New Focus: {np.round(new_posz * 1e6, 2)} [micron]\n")
+
 
             #take image
             logger.info("Start Overview Experiment ...")
-            exp_path = await take_zstack(exp_service, exp_setup_overview, save_path, time_folder, results, i, zoomed=False)
+            exp_path = await take_zstack_exp(exp_service, zstack_service, exp_setup_overview, new_posz, save_path, time_folder, results, i, zoomed=False, show_info=True)
             logger.info("... Finished Overview Experiment\n")
 
+
+
             tic_analysis = time.time()
+
+
             #2) analyse the z_stack
             fiji_segmentation(str(exp_path), str(time_folder), ij)
-            # im_width, im_height = fiji_segmentation(exp_path, time_folder, ij)
-            im_width, im_height = 5683.2, 3196.8    ## TODO: try and make the new package work with     
-            '''im_width, im_height = float(im_size.getOutput("image_width")), float(im_size.getOutput("image_height"))
-                                                    ^^^^^^^^^^^^^^^^^
-                AttributeError: 'java.util.HashMap' object has no attribute 'getOutput'''
+            # im_width, im_height = fiji_segmentation(exp_path, time_folder, ij) ##Doesnt work because of communication problems
+            im_width, im_height = 5683.2, 3196.8    # image size in µm
+
+
 
             toc_analysis = time.time()
+
+
 
             #3) analyse the results to get cell of interest
             dx, dy = find_largest_centre_dims(exp_path, im_width, im_height)
 
             toc_find_centre = time.time()
             
-
-
             if dx or dy:   #if a dx or dy exist
+
                 tic_switch_in = time.time()
                 logger.info("--Event Identified--\n")
 
                 # determine event position in [m]
                 new_posx, new_posy = current_x + dx* 1e-6, current_y + dy* 1e-6
 
+
                 #zoom into event
-                await event_identified(simple_stage_service, objchanger_service, new_posx, new_posy, zoomed_obj)  
+                await change_FOV(simple_stage_service, focus_service, objchanger_service, new_posx, new_posy, new_posz, zoomed_obj)  # no change in z because dont know exact focus yet
                 toc_switch_in = time.time()
-                await autofocus(swaf_service, focus_service, exp_setup_zoomed)
+                new_focus = await autofocus(swaf_service, focus_service, exp_setup_zoomed, zoomed=True, show_info=True)  # here we find focus
+
 
                 logger.info("Start Timelapse Experiment ...")
-                await take_timelapse(exp_service, exp_setup_zoomed, save_path, time_folder, results, i, zoomed=True)
+                await take_zstack_exp(exp_service, zstack_service, exp_setup_zoomed, new_focus, save_path, time_folder, results, i, zoomed=True, show_info=True)
                 logger.info("... Finished Timelapse Experiment\n")
 
+
                 tic_switch_out = time.time()
-                await event_identified(simple_stage_service, objchanger_service, current_x, current_y, overview_obj)  # zoom out to overview
-                #TODO MAYBE reduce pos index s.t. the same position gets checked again in case someother cell has started mitosing
+
+
+                await change_FOV(simple_stage_service, focus_service, objchanger_service, current_x, current_y, current_z, overview_obj)  # zoom out to overview
+
+
                 toc_switch_out = time.time()
             
+
+
             # add times to lists
             analysis_time = toc_analysis-tic_analysis
             find_centre_time = toc_find_centre-toc_analysis
@@ -238,7 +264,7 @@ if __name__ == "__main__":
     logger = set_logging()
 
     # run the main function
-    results, time_array = asyncio.run(check_experiment_api(experiment_name_overview=exp_choice,experiment_name_zoomed=zoomed_exp_choice, configfile=config_path))
+    results, time_array = asyncio.run(check_experiment_api(experiment_name_overview=experiment_choice,experiment_name_zoomed=zoomed_exp_choice, configfile=config_path))
 
     print(results)
     print(time_array)

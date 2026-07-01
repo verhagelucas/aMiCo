@@ -44,389 +44,510 @@
       <BeforeHardwareSetting></BeforeHardwareSetting>
       <AfterHardwareSetting></AfterHardwareSetting>
       <SubDimensionSetups>
-        <MultiTrackSetup IsActivated="true">
-          <IsTIRFAngleSynchronized>true</IsTIRFAngleSynchronized>
-          <ImagingDepth>0</ImagingDepth>
-          <Track IsActivated="false" IsSelected="false">
-            <DetectionModeSetup>
-              <Zeiss.Micro.Acquisition.WfTrackDetectionMode />
-            </DetectionModeSetup>
-            <BeforeHardwareSetting>Before [DAPI] Smart</BeforeHardwareSetting>
-            <AfterHardwareSetting>After [DAPI] Smart</AfterHardwareSetting>
-            <TrackName></TrackName>
-            <Channels>
-              <Channel IsActivated="false" IsSelected="false" ChannelSetupId="637581550706348802" Name="DAPI" Description="" IsLiveDenoisingActive="false" DenoisingModelId="00000000-0000-0000-0000-000000000000">
-                <Color>#FF0000FF</Color>
-                <PixelShiftX>0</PixelShiftX>
-                <PixelShiftY>0</PixelShiftY>
-                <GenerateMetaData>true</GenerateMetaData>
-                <DataGrabberSetup>
-                  <CameraFrameSetup Id="MTBCamera_MTBInfinitySpacePortChanger_Cameraport.Axiocam208c">
-                    <ShadingReference IsActivated="true">false</ShadingReference>
-                    <ShadingReferenceSource IsActivated="true">1</ShadingReferenceSource>
-                    <ManualShadingReferenceId IsActivated="true"></ManualShadingReferenceId>
-                    <ExposureTime IsActivated="true">200</ExposureTime>
-                    <Adjust IsActivated="true">0.3</Adjust>
-                    <AutoExposure IsActivated="true">false</AutoExposure>
-                  </CameraFrameSetup>
-                </DataGrabberSetup>
-                <FluorescenceDye>
-                  <Name>DAPI</Name>
-                  <ShortName>DAPI</ShortName>
-                  <Description></Description>
-                  <IlluminationType>Fluorescence</IlluminationType>
-                  <ContrastMethods>ReflectedLightFluorescence</ContrastMethods>
-                  <ContrastTypes>Unknown</ContrastTypes>
-                  <Color>#FF00A1FF</Color>
-                  <dye_id>McNamara-Boswell-0434</dye_id>
-                  <collection_id>66071726-cbd4-4c41-b371-0a6eee4ae9c5</collection_id>
-                </FluorescenceDye>
-              </Channel>
-            </Channels>
-            <IsExtendedSetupModificationWarningShown>false</IsExtendedSetupModificationWarningShown>
-            <ZStackMode>Yes</ZStackMode>
-            <UseZStackCenter>true</UseZStackCenter>
-            <ZStackSliceIndex>1</ZStackSliceIndex>
-            <IsDisabledForApoTome>false</IsDisabledForApoTome>
-            <FocusOffset>0</FocusOffset>
-            <DirectDevice>AlbireoLEDController</DirectDevice>
-          </Track>
-          <Track IsActivated="false" IsSelected="false">
-            <DetectionModeSetup>
-              <Zeiss.Micro.Acquisition.WfTrackDetectionMode />
-            </DetectionModeSetup>
-            <BeforeHardwareSetting>Before [At425] Smart</BeforeHardwareSetting>
-            <AfterHardwareSetting>After [At425] Smart</AfterHardwareSetting>
-            <TrackName></TrackName>
-            <Channels>
-              <Channel IsActivated="false" IsSelected="false" ChannelSetupId="637581550971477178" Name="Aqua" Description="" IsLiveDenoisingActive="false" DenoisingModelId="00000000-0000-0000-0000-000000000000">
-                <Color>#FF00CCFF</Color>
-                <PixelShiftX>0</PixelShiftX>
-                <PixelShiftY>0</PixelShiftY>
-                <GenerateMetaData>true</GenerateMetaData>
-                <DataGrabberSetup>
-                  <CameraFrameSetup Id="MTBCamera_MTBInfinitySpacePortChanger_Cameraport.Axiocam208c">
-                    <ShadingReference IsActivated="true">false</ShadingReference>
-                    <ShadingReferenceSource IsActivated="true">1</ShadingReferenceSource>
-                    <ManualShadingReferenceId IsActivated="true"></ManualShadingReferenceId>
-                    <ExposureTime IsActivated="true">200</ExposureTime>
-                    <Adjust IsActivated="true">0.3</Adjust>
-                    <AutoExposure IsActivated="true">false</AutoExposure>
-                  </CameraFrameSetup>
-                </DataGrabberSetup>
-                <FluorescenceDye>
-                  <Name>ATTO 425</Name>
-                  <ShortName>At425</ShortName>
-                  <Description></Description>
-                  <IlluminationType>Fluorescence</IlluminationType>
-                  <ContrastMethods>ReflectedLightFluorescence</ContrastMethods>
-                  <ContrastTypes>Unknown</ContrastTypes>
-                  <Color>#FF00FFBD</Color>
-                  <dye_id>McNamara-Boswell-0621</dye_id>
-                  <collection_id>66071726-cbd4-4c41-b371-0a6eee4ae9c5</collection_id>
-                </FluorescenceDye>
-              </Channel>
-            </Channels>
-            <IsExtendedSetupModificationWarningShown>false</IsExtendedSetupModificationWarningShown>
-            <ZStackMode>Yes</ZStackMode>
-            <UseZStackCenter>true</UseZStackCenter>
-            <ZStackSliceIndex>1</ZStackSliceIndex>
-            <IsDisabledForApoTome>false</IsDisabledForApoTome>
-            <FocusOffset>0</FocusOffset>
-            <DirectDevice>AlbireoLEDController</DirectDevice>
-          </Track>
-          <Track IsActivated="false" IsSelected="false">
-            <DetectionModeSetup>
-              <Zeiss.Micro.Acquisition.WfTrackDetectionMode />
-            </DetectionModeSetup>
-            <BeforeHardwareSetting>Before [At532] Smart</BeforeHardwareSetting>
-            <AfterHardwareSetting>After [At532] Smart</AfterHardwareSetting>
-            <TrackName></TrackName>
-            <Channels>
-              <Channel IsActivated="false" IsSelected="false" ChannelSetupId="637581551044699058" Name="Gold" Description="" IsLiveDenoisingActive="false" DenoisingModelId="00000000-0000-0000-0000-000000000000">
-                <Color>#FFFFFF00</Color>
-                <PixelShiftX>0</PixelShiftX>
-                <PixelShiftY>0</PixelShiftY>
-                <GenerateMetaData>true</GenerateMetaData>
-                <DataGrabberSetup>
-                  <CameraFrameSetup Id="MTBCamera_MTBInfinitySpacePortChanger_Cameraport.Axiocam208c">
-                    <ShadingReference IsActivated="true">false</ShadingReference>
-                    <ShadingReferenceSource IsActivated="true">1</ShadingReferenceSource>
-                    <ManualShadingReferenceId IsActivated="true"></ManualShadingReferenceId>
-                    <ExposureTime IsActivated="true">200</ExposureTime>
-                    <Adjust IsActivated="true">0.3</Adjust>
-                    <AutoExposure IsActivated="true">false</AutoExposure>
-                  </CameraFrameSetup>
-                </DataGrabberSetup>
-                <FluorescenceDye>
-                  <Name>ATTO 532</Name>
-                  <ShortName>At532</ShortName>
-                  <Description></Description>
-                  <IlluminationType>Fluorescence</IlluminationType>
-                  <ContrastMethods>ReflectedLightFluorescence</ContrastMethods>
-                  <ContrastTypes>Unknown</ContrastTypes>
-                  <Color>#FFC7FF00</Color>
-                  <dye_id>McNamara-Boswell-0631</dye_id>
-                  <collection_id>66071726-cbd4-4c41-b371-0a6eee4ae9c5</collection_id>
-                </FluorescenceDye>
-              </Channel>
-            </Channels>
-            <IsExtendedSetupModificationWarningShown>false</IsExtendedSetupModificationWarningShown>
-            <ZStackMode>Yes</ZStackMode>
-            <UseZStackCenter>true</UseZStackCenter>
-            <ZStackSliceIndex>1</ZStackSliceIndex>
-            <IsDisabledForApoTome>false</IsDisabledForApoTome>
-            <FocusOffset>0</FocusOffset>
-            <DirectDevice>AlbireoLEDController</DirectDevice>
-          </Track>
-          <Track IsActivated="false" IsSelected="false">
-            <DetectionModeSetup>
-              <Zeiss.Micro.Acquisition.WfTrackDetectionMode />
-            </DetectionModeSetup>
-            <BeforeHardwareSetting>Before [At488] Smart</BeforeHardwareSetting>
-            <AfterHardwareSetting>After [At488] Smart</AfterHardwareSetting>
-            <TrackName></TrackName>
-            <Channels>
-              <Channel IsActivated="false" IsSelected="false" ChannelSetupId="637581551002747294" Name="FITC" Description="" IsLiveDenoisingActive="false" DenoisingModelId="00000000-0000-0000-0000-000000000000">
-                <Color>#FF00FF00</Color>
-                <PixelShiftX>0</PixelShiftX>
-                <PixelShiftY>0</PixelShiftY>
-                <GenerateMetaData>true</GenerateMetaData>
-                <DataGrabberSetup>
-                  <CameraFrameSetup Id="MTBCamera_MTBInfinitySpacePortChanger_Cameraport.Axiocam208c">
-                    <ShadingReference IsActivated="true">false</ShadingReference>
-                    <ShadingReferenceSource IsActivated="true">1</ShadingReferenceSource>
-                    <ManualShadingReferenceId IsActivated="true"></ManualShadingReferenceId>
-                    <ExposureTime IsActivated="true">12.001</ExposureTime>
-                    <Adjust IsActivated="true">0.3</Adjust>
-                    <AutoExposure IsActivated="true">false</AutoExposure>
-                  </CameraFrameSetup>
-                </DataGrabberSetup>
-                <FluorescenceDye>
-                  <Name>ATTO 488</Name>
-                  <ShortName>At488</ShortName>
-                  <Description></Description>
-                  <IlluminationType>Fluorescence</IlluminationType>
-                  <ContrastMethods>ReflectedLightFluorescence</ContrastMethods>
-                  <ContrastTypes>Unknown</ContrastTypes>
-                  <Color>#FF00FF0C</Color>
-                  <dye_id>McNamara-Boswell-0625</dye_id>
-                  <collection_id>66071726-cbd4-4c41-b371-0a6eee4ae9c5</collection_id>
-                </FluorescenceDye>
-              </Channel>
-            </Channels>
-            <IsExtendedSetupModificationWarningShown>false</IsExtendedSetupModificationWarningShown>
-            <ZStackMode>Yes</ZStackMode>
-            <UseZStackCenter>true</UseZStackCenter>
-            <ZStackSliceIndex>1</ZStackSliceIndex>
-            <IsDisabledForApoTome>false</IsDisabledForApoTome>
-            <FocusOffset>0</FocusOffset>
-            <DirectDevice>AlbireoLEDController</DirectDevice>
-          </Track>
-          <Track IsActivated="false" IsSelected="false">
-            <DetectionModeSetup>
-              <Zeiss.Micro.Acquisition.WfTrackDetectionMode />
-            </DetectionModeSetup>
-            <BeforeHardwareSetting>Before [At590] Smart</BeforeHardwareSetting>
-            <AfterHardwareSetting>After [At590] Smart</AfterHardwareSetting>
-            <TrackName></TrackName>
-            <Channels>
-              <Channel IsActivated="false" IsSelected="false" ChannelSetupId="637581551117542436" Name="Red610" Description="" IsLiveDenoisingActive="false" DenoisingModelId="00000000-0000-0000-0000-000000000000">
-                <Color>#FFFF0000</Color>
-                <PixelShiftX>0</PixelShiftX>
-                <PixelShiftY>0</PixelShiftY>
-                <GenerateMetaData>true</GenerateMetaData>
-                <DataGrabberSetup>
-                  <CameraFrameSetup Id="MTBCamera_MTBInfinitySpacePortChanger_Cameraport.Axiocam208c">
-                    <ShadingReference IsActivated="true">false</ShadingReference>
-                    <ShadingReferenceSource IsActivated="true">1</ShadingReferenceSource>
-                    <ManualShadingReferenceId IsActivated="true"></ManualShadingReferenceId>
-                    <ExposureTime IsActivated="true">200</ExposureTime>
-                    <Adjust IsActivated="true">0.3</Adjust>
-                    <AutoExposure IsActivated="true">false</AutoExposure>
-                  </CameraFrameSetup>
-                </DataGrabberSetup>
-                <FluorescenceDye>
-                  <Name>ATTO 590</Name>
-                  <ShortName>At590</ShortName>
-                  <Description></Description>
-                  <IlluminationType>Fluorescence</IlluminationType>
-                  <ContrastMethods>ReflectedLightFluorescence</ContrastMethods>
-                  <ContrastTypes>Unknown</ContrastTypes>
-                  <Color>#FFFF0003</Color>
-                  <dye_id>McNamara-Boswell-0639</dye_id>
-                  <collection_id>66071726-cbd4-4c41-b371-0a6eee4ae9c5</collection_id>
-                </FluorescenceDye>
-              </Channel>
-            </Channels>
-            <IsExtendedSetupModificationWarningShown>false</IsExtendedSetupModificationWarningShown>
-            <ZStackMode>Yes</ZStackMode>
-            <UseZStackCenter>true</UseZStackCenter>
-            <ZStackSliceIndex>1</ZStackSliceIndex>
-            <IsDisabledForApoTome>false</IsDisabledForApoTome>
-            <FocusOffset>0</FocusOffset>
-            <DirectDevice>AlbireoLEDController</DirectDevice>
-          </Track>
-          <Track IsActivated="false" IsSelected="false">
-            <DetectionModeSetup>
-              <Zeiss.Micro.Acquisition.WfTrackDetectionMode />
-            </DetectionModeSetup>
-            <BeforeHardwareSetting>Before [At647] Smart</BeforeHardwareSetting>
-            <AfterHardwareSetting>After [At647] Smart</AfterHardwareSetting>
-            <TrackName></TrackName>
-            <Channels>
-              <Channel IsActivated="false" IsSelected="false" ChannelSetupId="637581551152137442" Name="Cy5" Description="" IsLiveDenoisingActive="false" DenoisingModelId="00000000-0000-0000-0000-000000000000">
-                <Color>#FFFFFFFF</Color>
-                <PixelShiftX>0</PixelShiftX>
-                <PixelShiftY>0</PixelShiftY>
-                <GenerateMetaData>true</GenerateMetaData>
-                <DataGrabberSetup>
-                  <CameraFrameSetup Id="MTBCamera_MTBInfinitySpacePortChanger_Cameraport.Axiocam208c">
-                    <ShadingReference IsActivated="true">false</ShadingReference>
-                    <ShadingReferenceSource IsActivated="true">1</ShadingReferenceSource>
-                    <ManualShadingReferenceId IsActivated="true"></ManualShadingReferenceId>
-                    <ExposureTime IsActivated="true">200</ExposureTime>
-                    <Adjust IsActivated="true">0.3</Adjust>
-                    <AutoExposure IsActivated="true">false</AutoExposure>
-                  </CameraFrameSetup>
-                </DataGrabberSetup>
-                <FluorescenceDye>
-                  <Name>ATTO 647</Name>
-                  <ShortName>At647</ShortName>
-                  <Description></Description>
-                  <IlluminationType>Fluorescence</IlluminationType>
-                  <ContrastMethods>ReflectedLightFluorescence</ContrastMethods>
-                  <ContrastTypes>Unknown</ContrastTypes>
-                  <Color>#FFFF0010</Color>
-                  <dye_id>McNamara-Boswell-0648</dye_id>
-                  <collection_id>66071726-cbd4-4c41-b371-0a6eee4ae9c5</collection_id>
-                </FluorescenceDye>
-              </Channel>
-            </Channels>
-            <IsExtendedSetupModificationWarningShown>false</IsExtendedSetupModificationWarningShown>
-            <ZStackMode>Yes</ZStackMode>
-            <UseZStackCenter>true</UseZStackCenter>
-            <ZStackSliceIndex>1</ZStackSliceIndex>
-            <IsDisabledForApoTome>false</IsDisabledForApoTome>
-            <FocusOffset>0</FocusOffset>
-            <DirectDevice>AlbireoLEDController</DirectDevice>
-          </Track>
-          <Track IsActivated="false" IsSelected="false">
-            <DetectionModeSetup>
-              <Zeiss.Micro.Acquisition.WfTrackDetectionMode />
-            </DetectionModeSetup>
-            <BeforeHardwareSetting>Before [At550] Smart</BeforeHardwareSetting>
-            <AfterHardwareSetting>After [At550] Smart</AfterHardwareSetting>
-            <TrackName></TrackName>
-            <Channels>
-              <Channel IsActivated="false" IsSelected="false" ChannelSetupId="637581551184013038" Name="TRITC" Description="" IsLiveDenoisingActive="false" DenoisingModelId="00000000-0000-0000-0000-000000000000">
-                <Color>#FFFF0000</Color>
-                <PixelShiftX>0</PixelShiftX>
-                <PixelShiftY>0</PixelShiftY>
-                <GenerateMetaData>true</GenerateMetaData>
-                <DataGrabberSetup>
-                  <CameraFrameSetup Id="MTBCamera_MTBInfinitySpacePortChanger_Cameraport.Axiocam208c">
-                    <ShadingReference IsActivated="true">false</ShadingReference>
-                    <ShadingReferenceSource IsActivated="true">1</ShadingReferenceSource>
-                    <ManualShadingReferenceId IsActivated="true"></ManualShadingReferenceId>
-                    <ExposureTime IsActivated="true">100</ExposureTime>
-                    <Adjust IsActivated="true">0.3</Adjust>
-                    <AutoExposure IsActivated="true">false</AutoExposure>
-                  </CameraFrameSetup>
-                </DataGrabberSetup>
-                <FluorescenceDye>
-                  <Name>ATTO 550</Name>
-                  <ShortName>At550</ShortName>
-                  <Description></Description>
-                  <IlluminationType>Fluorescence</IlluminationType>
-                  <ContrastMethods>ReflectedLightFluorescence</ContrastMethods>
-                  <ContrastTypes>Unknown</ContrastTypes>
-                  <Color>#FFFF6800</Color>
-                  <dye_id>McNamara-Boswell-0634</dye_id>
-                  <collection_id>66071726-cbd4-4c41-b371-0a6eee4ae9c5</collection_id>
-                </FluorescenceDye>
-              </Channel>
-            </Channels>
-            <IsExtendedSetupModificationWarningShown>false</IsExtendedSetupModificationWarningShown>
-            <ZStackMode>Yes</ZStackMode>
-            <UseZStackCenter>true</UseZStackCenter>
-            <ZStackSliceIndex>1</ZStackSliceIndex>
-            <IsDisabledForApoTome>false</IsDisabledForApoTome>
-            <FocusOffset>0</FocusOffset>
-            <DirectDevice>AlbireoLEDController</DirectDevice>
-          </Track>
-          <Track IsActivated="true" IsSelected="true">
-            <DetectionModeSetup>
-              <Zeiss.Micro.Acquisition.WfTrackDetectionMode />
-            </DetectionModeSetup>
-            <BeforeHardwareSetting>TrackBeforeSetting_2</BeforeHardwareSetting>
-            <AfterHardwareSetting>TrackAfterSetting_2</AfterHardwareSetting>
-            <TrackName></TrackName>
-            <Channels>
-              <Channel IsActivated="true" IsSelected="true" ChannelSetupId="637582439936880141" Name="Brightfield" Description="" IsLiveDenoisingActive="false" DenoisingModelId="00000000-0000-0000-0000-000000000000">
-                <Color>#FFFFFFFF</Color>
-                <PixelShiftX>0</PixelShiftX>
-                <PixelShiftY>0</PixelShiftY>
-                <GenerateMetaData>true</GenerateMetaData>
-                <DataGrabberSetup>
-                  <CameraFrameSetup Id="MTBCamera_MTBInfinitySpacePortChanger_Cameraport.Axiocam208c">
-                    <ShadingReference IsActivated="true">true</ShadingReference>
-                    <ShadingReferenceSource IsActivated="true">1</ShadingReferenceSource>
-                    <ManualShadingReferenceId IsActivated="true"></ManualShadingReferenceId>
-                    <ExposureTime IsActivated="true">6.601</ExposureTime>
-                    <AutoExposure IsActivated="true">false</AutoExposure>
-                  </CameraFrameSetup>
-                </DataGrabberSetup>
-                <ContrastMethod>
-                  <Name>TL DIC</Name>
-                  <ShortName>DIC</ShortName>
-                  <Description></Description>
-                  <IlluminationType>Transmitted</IlluminationType>
-                  <ContrastMethods>TransmittedLightDIC</ContrastMethods>
-                  <ContrastTypes>AllTLDIC</ContrastTypes>
-                  <Color>#FFFFFFFF</Color>
-                </ContrastMethod>
-              </Channel>
-            </Channels>
-            <IsExtendedSetupModificationWarningShown>false</IsExtendedSetupModificationWarningShown>
-            <ZStackMode>Yes</ZStackMode>
-            <UseZStackCenter>true</UseZStackCenter>
-            <ZStackSliceIndex>1</ZStackSliceIndex>
-            <IsDisabledForApoTome>false</IsDisabledForApoTome>
-            <FocusOffset>0</FocusOffset>
-            <DirectDevice>Standard</DirectDevice>
-          </Track>
+        <ZStackSetup IsActivated="true">
+          <First>
+            <Distance>
+              <Value>0.024250169999999998</Value>
+              <DefaultUnitFormat>um</DefaultUnitFormat>
+            </Distance>
+          </First>
+          <Last>
+            <Distance>
+              <Value>0.024258169999999996</Value>
+              <DefaultUnitFormat>um</DefaultUnitFormat>
+            </Distance>
+          </Last>
+          <Interval>
+            <Distance>
+              <Value>2E-06</Value>
+              <DefaultUnitFormat>um</DefaultUnitFormat>
+            </Distance>
+          </Interval>
+          <IsCenterMode>true</IsCenterMode>
+          <Offset>0</Offset>
+          <IsIntervalKept>true</IsIntervalKept>
+          <DelayAfterFocusMove>0</DelayAfterFocusMove>
+          <EnforceOptimalZDistance>false</EnforceOptimalZDistance>
+          <EnforceMovementAgainstGravity>true</EnforceMovementAgainstGravity>
+          <SetupExtensions />
           <SubDimensionSetups>
-            <ZStackSetup IsActivated="true">
-              <First>
-                <Distance>
-                  <Value>0.02402375</Value>
-                  <DefaultUnitFormat>um</DefaultUnitFormat>
-                </Distance>
-              </First>
-              <Last>
-                <Distance>
-                  <Value>0.02402775</Value>
-                  <DefaultUnitFormat>um</DefaultUnitFormat>
-                </Distance>
-              </Last>
-              <Interval>
-                <Distance>
-                  <Value>2E-06</Value>
-                  <DefaultUnitFormat>um</DefaultUnitFormat>
-                </Distance>
-              </Interval>
-              <IsCenterMode>true</IsCenterMode>
-              <Offset>0</Offset>
-              <IsIntervalKept>true</IsIntervalKept>
-              <DelayAfterFocusMove>0</DelayAfterFocusMove>
-              <EnforceOptimalZDistance>false</EnforceOptimalZDistance>
-              <EnforceMovementAgainstGravity>true</EnforceMovementAgainstGravity>
-              <SetupExtensions />
+            <MultiTrackSetup IsActivated="true">
+              <IsTIRFAngleSynchronized>true</IsTIRFAngleSynchronized>
+              <ImagingDepth>0</ImagingDepth>
+              <Track IsActivated="false" IsSelected="false">
+                <DetectionModeSetup>
+                  <Zeiss.Micro.Acquisition.WfTrackDetectionMode />
+                </DetectionModeSetup>
+                <BeforeHardwareSetting>Before [DAPI] Smart</BeforeHardwareSetting>
+                <AfterHardwareSetting>After [DAPI] Smart</AfterHardwareSetting>
+                <TrackName></TrackName>
+                <Channels>
+                  <Channel IsActivated="false" IsSelected="false" ChannelSetupId="637581550706348802" Name="DAPI" Description="" IsLiveDenoisingActive="false" DenoisingModelId="00000000-0000-0000-0000-000000000000">
+                    <Color>#FF0000FF</Color>
+                    <PixelShiftX>1</PixelShiftX>
+                    <PixelShiftY>-1</PixelShiftY>
+                    <GenerateMetaData>true</GenerateMetaData>
+                    <DataGrabberSetup>
+                      <CameraFrameSetup Id="MTBCamera_MTBTube_Cameraport.Axiocam305m">
+                        <ShadingReference IsActivated="true">true</ShadingReference>
+                        <ShadingReferenceSource IsActivated="true">1</ShadingReferenceSource>
+                        <ManualShadingReferenceId IsActivated="true"></ManualShadingReferenceId>
+                        <ExposureTime IsActivated="true">100</ExposureTime>
+                        <Adjust IsActivated="true">0.3</Adjust>
+                        <AutoExposure IsActivated="true">false</AutoExposure>
+                      </CameraFrameSetup>
+                    </DataGrabberSetup>
+                    <FluorescenceDye>
+                      <Name>DAPI</Name>
+                      <ShortName>DAPI</ShortName>
+                      <Description></Description>
+                      <IlluminationType>Fluorescence</IlluminationType>
+                      <ContrastMethods>ReflectedLightFluorescence</ContrastMethods>
+                      <ContrastTypes>Unknown</ContrastTypes>
+                      <Color>#FF00A1FF</Color>
+                      <dye_id>McNamara-Boswell-0434</dye_id>
+                      <collection_id>66071726-cbd4-4c41-b371-0a6eee4ae9c5</collection_id>
+                    </FluorescenceDye>
+                  </Channel>
+                </Channels>
+                <IsExtendedSetupModificationWarningShown>false</IsExtendedSetupModificationWarningShown>
+                <ZStackMode>Yes</ZStackMode>
+                <UseZStackCenter>true</UseZStackCenter>
+                <ZStackSliceIndex>1</ZStackSliceIndex>
+                <IsDisabledForApoTome>false</IsDisabledForApoTome>
+                <FocusOffset>0</FocusOffset>
+                <DirectDevice>AlbireoLEDController</DirectDevice>
+              </Track>
+              <Track IsActivated="false" IsSelected="false">
+                <DetectionModeSetup>
+                  <Zeiss.Micro.Acquisition.WfTrackDetectionMode />
+                </DetectionModeSetup>
+                <BeforeHardwareSetting>Before [At425] Smart</BeforeHardwareSetting>
+                <AfterHardwareSetting>After [At425] Smart</AfterHardwareSetting>
+                <TrackName></TrackName>
+                <Channels>
+                  <Channel IsActivated="false" IsSelected="false" ChannelSetupId="637581550971477178" Name="Aqua" Description="" IsLiveDenoisingActive="false" DenoisingModelId="00000000-0000-0000-0000-000000000000">
+                    <Color>#FF00CCFF</Color>
+                    <PixelShiftX>0</PixelShiftX>
+                    <PixelShiftY>0</PixelShiftY>
+                    <GenerateMetaData>true</GenerateMetaData>
+                    <DataGrabberSetup>
+                      <CameraFrameSetup Id="MTBCamera_MTBTube_Cameraport.Axiocam305m">
+                        <ShadingReference IsActivated="true">true</ShadingReference>
+                        <ShadingReferenceSource IsActivated="true">0</ShadingReferenceSource>
+                        <ManualShadingReferenceId IsActivated="true"></ManualShadingReferenceId>
+                        <ExposureTime IsActivated="true">100</ExposureTime>
+                        <Adjust IsActivated="true">0.3</Adjust>
+                        <AutoExposure IsActivated="true">false</AutoExposure>
+                      </CameraFrameSetup>
+                    </DataGrabberSetup>
+                    <FluorescenceDye>
+                      <Name>ATTO 425</Name>
+                      <ShortName>At425</ShortName>
+                      <Description></Description>
+                      <IlluminationType>Fluorescence</IlluminationType>
+                      <ContrastMethods>ReflectedLightFluorescence</ContrastMethods>
+                      <ContrastTypes>Unknown</ContrastTypes>
+                      <Color>#FF00FFBD</Color>
+                      <dye_id>McNamara-Boswell-0621</dye_id>
+                      <collection_id>66071726-cbd4-4c41-b371-0a6eee4ae9c5</collection_id>
+                    </FluorescenceDye>
+                  </Channel>
+                </Channels>
+                <IsExtendedSetupModificationWarningShown>false</IsExtendedSetupModificationWarningShown>
+                <ZStackMode>Yes</ZStackMode>
+                <UseZStackCenter>true</UseZStackCenter>
+                <ZStackSliceIndex>1</ZStackSliceIndex>
+                <IsDisabledForApoTome>false</IsDisabledForApoTome>
+                <FocusOffset>0</FocusOffset>
+                <DirectDevice>AlbireoLEDController</DirectDevice>
+              </Track>
+              <Track IsActivated="false" IsSelected="false">
+                <DetectionModeSetup>
+                  <Zeiss.Micro.Acquisition.WfTrackDetectionMode />
+                </DetectionModeSetup>
+                <BeforeHardwareSetting>Before [At532] Smart</BeforeHardwareSetting>
+                <AfterHardwareSetting>After [At532] Smart</AfterHardwareSetting>
+                <TrackName></TrackName>
+                <Channels>
+                  <Channel IsActivated="false" IsSelected="false" ChannelSetupId="637581551044699058" Name="Gold" Description="" IsLiveDenoisingActive="false" DenoisingModelId="00000000-0000-0000-0000-000000000000">
+                    <Color>#FFFFFF00</Color>
+                    <PixelShiftX>0</PixelShiftX>
+                    <PixelShiftY>0</PixelShiftY>
+                    <GenerateMetaData>true</GenerateMetaData>
+                    <DataGrabberSetup>
+                      <CameraFrameSetup Id="MTBCamera_MTBTube_Cameraport.Axiocam305m">
+                        <ShadingReference IsActivated="true">true</ShadingReference>
+                        <ShadingReferenceSource IsActivated="true">1</ShadingReferenceSource>
+                        <ManualShadingReferenceId IsActivated="true"></ManualShadingReferenceId>
+                        <ExposureTime IsActivated="true">100</ExposureTime>
+                        <Adjust IsActivated="true">0.3</Adjust>
+                        <AutoExposure IsActivated="true">false</AutoExposure>
+                      </CameraFrameSetup>
+                    </DataGrabberSetup>
+                    <FluorescenceDye>
+                      <Name>ATTO 532</Name>
+                      <ShortName>At532</ShortName>
+                      <Description></Description>
+                      <IlluminationType>Fluorescence</IlluminationType>
+                      <ContrastMethods>ReflectedLightFluorescence</ContrastMethods>
+                      <ContrastTypes>Unknown</ContrastTypes>
+                      <Color>#FFC7FF00</Color>
+                      <dye_id>McNamara-Boswell-0631</dye_id>
+                      <collection_id>66071726-cbd4-4c41-b371-0a6eee4ae9c5</collection_id>
+                    </FluorescenceDye>
+                  </Channel>
+                </Channels>
+                <IsExtendedSetupModificationWarningShown>false</IsExtendedSetupModificationWarningShown>
+                <ZStackMode>Yes</ZStackMode>
+                <UseZStackCenter>true</UseZStackCenter>
+                <ZStackSliceIndex>1</ZStackSliceIndex>
+                <IsDisabledForApoTome>false</IsDisabledForApoTome>
+                <FocusOffset>0</FocusOffset>
+                <DirectDevice>AlbireoLEDController</DirectDevice>
+              </Track>
+              <Track IsActivated="true" IsSelected="true">
+                <DetectionModeSetup>
+                  <Zeiss.Micro.Acquisition.WfTrackDetectionMode />
+                </DetectionModeSetup>
+                <BeforeHardwareSetting>Before [At488] Smart</BeforeHardwareSetting>
+                <AfterHardwareSetting>After [At488] Smart</AfterHardwareSetting>
+                <TrackName></TrackName>
+                <Channels>
+                  <Channel IsActivated="true" IsSelected="true" ChannelSetupId="637581551002747294" Name="FITC" Description="" IsLiveDenoisingActive="false" DenoisingModelId="00000000-0000-0000-0000-000000000000">
+                    <Color>#FF00FF00</Color>
+                    <PixelShiftX>0</PixelShiftX>
+                    <PixelShiftY>0</PixelShiftY>
+                    <GenerateMetaData>true</GenerateMetaData>
+                    <DataGrabberSetup>
+                      <CameraFrameSetup Id="MTBCamera_MTBTube_Cameraport.Axiocam305m">
+                        <ShadingReference IsActivated="true">true</ShadingReference>
+                        <ShadingReferenceSource IsActivated="true">1</ShadingReferenceSource>
+                        <ManualShadingReferenceId IsActivated="true"></ManualShadingReferenceId>
+                        <ExposureTime IsActivated="true">100</ExposureTime>
+                        <Adjust IsActivated="true">0.3</Adjust>
+                        <AutoExposure IsActivated="true">false</AutoExposure>
+                      </CameraFrameSetup>
+                    </DataGrabberSetup>
+                    <FluorescenceDye>
+                      <Name>ATTO 488</Name>
+                      <ShortName>At488</ShortName>
+                      <Description></Description>
+                      <IlluminationType>Fluorescence</IlluminationType>
+                      <ContrastMethods>ReflectedLightFluorescence</ContrastMethods>
+                      <ContrastTypes>Unknown</ContrastTypes>
+                      <Color>#FF00FF0C</Color>
+                      <dye_id>McNamara-Boswell-0625</dye_id>
+                      <collection_id>66071726-cbd4-4c41-b371-0a6eee4ae9c5</collection_id>
+                    </FluorescenceDye>
+                  </Channel>
+                </Channels>
+                <IsExtendedSetupModificationWarningShown>false</IsExtendedSetupModificationWarningShown>
+                <ZStackMode>Yes</ZStackMode>
+                <UseZStackCenter>true</UseZStackCenter>
+                <ZStackSliceIndex>1</ZStackSliceIndex>
+                <IsDisabledForApoTome>false</IsDisabledForApoTome>
+                <FocusOffset>1.5</FocusOffset>
+                <DirectDevice>AlbireoLEDController</DirectDevice>
+              </Track>
+              <Track IsActivated="false" IsSelected="false">
+                <DetectionModeSetup>
+                  <Zeiss.Micro.Acquisition.WfTrackDetectionMode />
+                </DetectionModeSetup>
+                <BeforeHardwareSetting>Before [At590] Smart</BeforeHardwareSetting>
+                <AfterHardwareSetting>After [At590] Smart</AfterHardwareSetting>
+                <TrackName></TrackName>
+                <Channels>
+                  <Channel IsActivated="false" IsSelected="false" ChannelSetupId="637581551117542436" Name="Red610" Description="" IsLiveDenoisingActive="false" DenoisingModelId="00000000-0000-0000-0000-000000000000">
+                    <Color>#FFFF0000</Color>
+                    <PixelShiftX>0</PixelShiftX>
+                    <PixelShiftY>0</PixelShiftY>
+                    <GenerateMetaData>true</GenerateMetaData>
+                    <DataGrabberSetup>
+                      <CameraFrameSetup Id="MTBCamera_MTBTube_Cameraport.Axiocam305m">
+                        <ShadingReference IsActivated="true">true</ShadingReference>
+                        <ShadingReferenceSource IsActivated="true">1</ShadingReferenceSource>
+                        <ManualShadingReferenceId IsActivated="true"></ManualShadingReferenceId>
+                        <ExposureTime IsActivated="true">100</ExposureTime>
+                        <Adjust IsActivated="true">0.3</Adjust>
+                        <AutoExposure IsActivated="true">false</AutoExposure>
+                      </CameraFrameSetup>
+                    </DataGrabberSetup>
+                    <FluorescenceDye>
+                      <Name>ATTO 590</Name>
+                      <ShortName>At590</ShortName>
+                      <Description></Description>
+                      <IlluminationType>Fluorescence</IlluminationType>
+                      <ContrastMethods>ReflectedLightFluorescence</ContrastMethods>
+                      <ContrastTypes>Unknown</ContrastTypes>
+                      <Color>#FFFF0003</Color>
+                      <dye_id>McNamara-Boswell-0639</dye_id>
+                      <collection_id>66071726-cbd4-4c41-b371-0a6eee4ae9c5</collection_id>
+                    </FluorescenceDye>
+                  </Channel>
+                </Channels>
+                <IsExtendedSetupModificationWarningShown>false</IsExtendedSetupModificationWarningShown>
+                <ZStackMode>Yes</ZStackMode>
+                <UseZStackCenter>true</UseZStackCenter>
+                <ZStackSliceIndex>1</ZStackSliceIndex>
+                <IsDisabledForApoTome>false</IsDisabledForApoTome>
+                <FocusOffset>0</FocusOffset>
+                <DirectDevice>AlbireoLEDController</DirectDevice>
+              </Track>
+              <Track IsActivated="false" IsSelected="false">
+                <DetectionModeSetup>
+                  <Zeiss.Micro.Acquisition.WfTrackDetectionMode />
+                </DetectionModeSetup>
+                <BeforeHardwareSetting>Before [At647] Smart</BeforeHardwareSetting>
+                <AfterHardwareSetting>After [At647] Smart</AfterHardwareSetting>
+                <TrackName></TrackName>
+                <Channels>
+                  <Channel IsActivated="false" IsSelected="false" ChannelSetupId="637581551152137442" Name="Cy5" Description="" IsLiveDenoisingActive="false" DenoisingModelId="00000000-0000-0000-0000-000000000000">
+                    <Color>#FFFFFFFF</Color>
+                    <PixelShiftX>0</PixelShiftX>
+                    <PixelShiftY>0</PixelShiftY>
+                    <GenerateMetaData>true</GenerateMetaData>
+                    <DataGrabberSetup>
+                      <CameraFrameSetup Id="MTBCamera_MTBTube_Cameraport.Axiocam305m">
+                        <ShadingReference IsActivated="true">true</ShadingReference>
+                        <ShadingReferenceSource IsActivated="true">1</ShadingReferenceSource>
+                        <ManualShadingReferenceId IsActivated="true"></ManualShadingReferenceId>
+                        <ExposureTime IsActivated="true">100</ExposureTime>
+                        <Adjust IsActivated="true">0.3</Adjust>
+                        <AutoExposure IsActivated="true">false</AutoExposure>
+                      </CameraFrameSetup>
+                    </DataGrabberSetup>
+                    <FluorescenceDye>
+                      <Name>ATTO 647</Name>
+                      <ShortName>At647</ShortName>
+                      <Description></Description>
+                      <IlluminationType>Fluorescence</IlluminationType>
+                      <ContrastMethods>ReflectedLightFluorescence</ContrastMethods>
+                      <ContrastTypes>Unknown</ContrastTypes>
+                      <Color>#FFFF0010</Color>
+                      <dye_id>McNamara-Boswell-0648</dye_id>
+                      <collection_id>66071726-cbd4-4c41-b371-0a6eee4ae9c5</collection_id>
+                    </FluorescenceDye>
+                  </Channel>
+                </Channels>
+                <IsExtendedSetupModificationWarningShown>false</IsExtendedSetupModificationWarningShown>
+                <ZStackMode>Yes</ZStackMode>
+                <UseZStackCenter>true</UseZStackCenter>
+                <ZStackSliceIndex>1</ZStackSliceIndex>
+                <IsDisabledForApoTome>false</IsDisabledForApoTome>
+                <FocusOffset>0</FocusOffset>
+                <DirectDevice>AlbireoLEDController</DirectDevice>
+              </Track>
+              <Track IsActivated="false" IsSelected="false">
+                <DetectionModeSetup>
+                  <Zeiss.Micro.Acquisition.WfTrackDetectionMode />
+                </DetectionModeSetup>
+                <BeforeHardwareSetting>TrackBeforeSetting</BeforeHardwareSetting>
+                <AfterHardwareSetting>TrackAfterSetting</AfterHardwareSetting>
+                <TrackName></TrackName>
+                <Channels>
+                  <Channel IsActivated="false" IsSelected="false" ChannelSetupId="638925946389708755" Name="Cy7" Description="" IsLiveDenoisingActive="false" DenoisingModelId="00000000-0000-0000-0000-000000000000">
+                    <Color>#FF9900CC</Color>
+                    <PixelShiftX>0</PixelShiftX>
+                    <PixelShiftY>0</PixelShiftY>
+                    <GenerateMetaData>true</GenerateMetaData>
+                    <DataGrabberSetup>
+                      <CameraFrameSetup Id="MTBCamera_MTBTube_Cameraport.Axiocam305m">
+                        <ShadingReference IsActivated="true">true</ShadingReference>
+                        <ShadingReferenceSource IsActivated="true">1</ShadingReferenceSource>
+                        <ManualShadingReferenceId IsActivated="true"></ManualShadingReferenceId>
+                        <ExposureTime IsActivated="true">100</ExposureTime>
+                        <AutoExposure IsActivated="true">false</AutoExposure>
+                      </CameraFrameSetup>
+                    </DataGrabberSetup>
+                    <FluorescenceDye>
+                      <Name>Cy7</Name>
+                      <ShortName>Cy7</ShortName>
+                      <Description></Description>
+                      <IlluminationType>Fluorescence</IlluminationType>
+                      <ContrastMethods>ReflectedLightFluorescence</ContrastMethods>
+                      <ContrastTypes>Unknown</ContrastTypes>
+                      <Color>#FFFF0015</Color>
+                      <dye_id>McNamara-Boswell-0778</dye_id>
+                      <collection_id>66071726-cbd4-4c41-b371-0a6eee4ae9c5</collection_id>
+                    </FluorescenceDye>
+                  </Channel>
+                </Channels>
+                <IsExtendedSetupModificationWarningShown>false</IsExtendedSetupModificationWarningShown>
+                <ZStackMode>Yes</ZStackMode>
+                <UseZStackCenter>true</UseZStackCenter>
+                <ZStackSliceIndex>1</ZStackSliceIndex>
+                <IsDisabledForApoTome>false</IsDisabledForApoTome>
+                <FocusOffset>0</FocusOffset>
+                <DirectDevice>AlbireoLEDController</DirectDevice>
+              </Track>
+              <Track IsActivated="false" IsSelected="false">
+                <DetectionModeSetup>
+                  <Zeiss.Micro.Acquisition.WfTrackDetectionMode />
+                </DetectionModeSetup>
+                <BeforeHardwareSetting>Before [Bright] Smart</BeforeHardwareSetting>
+                <AfterHardwareSetting>After [Bright] Smart</AfterHardwareSetting>
+                <TrackName></TrackName>
+                <Channels>
+                  <Channel IsActivated="false" IsSelected="false" ChannelSetupId="637581560125920432" Name="Bright" Description="" IsLiveDenoisingActive="false" DenoisingModelId="00000000-0000-0000-0000-000000000000">
+                    <Color>#FFFFFFFF</Color>
+                    <PixelShiftX>0</PixelShiftX>
+                    <PixelShiftY>0</PixelShiftY>
+                    <GenerateMetaData>true</GenerateMetaData>
+                    <DataGrabberSetup>
+                      <CameraFrameSetup Id="MTBCamera_MTBTube_Cameraport.Axiocam305m">
+                        <ShadingReference IsActivated="true">false</ShadingReference>
+                        <ShadingReferenceSource IsActivated="true">1</ShadingReferenceSource>
+                        <ManualShadingReferenceId IsActivated="true"></ManualShadingReferenceId>
+                        <ExposureTime IsActivated="true">30</ExposureTime>
+                        <Adjust IsActivated="true">0.7</Adjust>
+                        <AutoExposure IsActivated="true">false</AutoExposure>
+                      </CameraFrameSetup>
+                    </DataGrabberSetup>
+                    <ContrastMethod>
+                      <Name>TL Brightfield</Name>
+                      <ShortName>Bright</ShortName>
+                      <Description></Description>
+                      <IlluminationType>Transmitted</IlluminationType>
+                      <ContrastMethods>TransmittedLightBrightfield</ContrastMethods>
+                      <ContrastTypes>BrightField</ContrastTypes>
+                      <Color>#FFFFFFFF</Color>
+                    </ContrastMethod>
+                  </Channel>
+                </Channels>
+                <IsExtendedSetupModificationWarningShown>false</IsExtendedSetupModificationWarningShown>
+                <ZStackMode>Yes</ZStackMode>
+                <UseZStackCenter>true</UseZStackCenter>
+                <ZStackSliceIndex>1</ZStackSliceIndex>
+                <IsDisabledForApoTome>false</IsDisabledForApoTome>
+                <FocusOffset>0</FocusOffset>
+                <DirectDevice>MTBTLHalogenLamp</DirectDevice>
+              </Track>
               <SubDimensionSetups />
-            </ZStackSetup>
+            </MultiTrackSetup>
           </SubDimensionSetups>
-        </MultiTrackSetup>
+        </ZStackSetup>
+        <RegionsSetup IsActivated="false">
+          <SampleHolder>
+            <Overlap>0.1</Overlap>
+            <ScanMode>Meander</ScanMode>
+            <PositionedRegionsScanMode>FirstYThenX</PositionedRegionsScanMode>
+            <TemplateShapesScanMode>Meander</TemplateShapesScanMode>
+            <IsConstantTiles>false</IsConstantTiles>
+            <TileRegionAnchorMode>Center</TileRegionAnchorMode>
+            <StageReferencePoint>112794.8,39260.6</StageReferencePoint>
+            <UseStageBacklashCorrection>true</UseStageBacklashCorrection>
+            <UseFocusBacklashCorrection>true</UseFocusBacklashCorrection>
+            <IsOptimizedPositionedRegionsSorting>true</IsOptimizedPositionedRegionsSorting>
+            <IsOptimizedTemplateShapesSorting>true</IsOptimizedTemplateShapesSorting>
+            <UseStageContinualSpeed>false</UseStageContinualSpeed>
+            <StageContinualSpeed>0.8</StageContinualSpeed>
+            <UseStageContinualAcceleration>false</UseStageContinualAcceleration>
+            <StageContinualAcceleration>0.5</StageContinualAcceleration>
+            <MoveToLoadPositionBetweenRegions>false</MoveToLoadPositionBetweenRegions>
+            <MoveToLoadPositionBetweenShapes>false</MoveToLoadPositionBetweenShapes>
+            <SplitScenesInSeparateFiles>false</SplitScenesInSeparateFiles>
+            <SplitTilesInSeparateFiles>false</SplitTilesInSeparateFiles>
+            <TileRegionCoveringMode>AlignedToLocalTileRegion</TileRegionCoveringMode>
+            <TemplateShapesFillMode>FillGrade</TemplateShapesFillMode>
+            <TemplateShapesFillGrade>0.25</TemplateShapesFillGrade>
+            <TemplateShapesFillWidth>10</TemplateShapesFillWidth>
+            <TemplateShapesFillHeight>10</TemplateShapesFillHeight>
+            <IsOnlineStitchingEnabled>false</IsOnlineStitchingEnabled>
+            <IsOnlinePyramidEnabled>true</IsOnlinePyramidEnabled>
+            <GlobalInterpolationExpansionDegree>2</GlobalInterpolationExpansionDegree>
+            <LocalInterpolationExpansionDegree>2</LocalInterpolationExpansionDegree>
+            <IsFocusSurfaceOutlierRemovingEnabled>true</IsFocusSurfaceOutlierRemovingEnabled>
+            <FocusSurfaceOutlierExpansionDegree>1</FocusSurfaceOutlierExpansionDegree>
+            <FocusSurfaceOutlierThresholdSigma>2.75</FocusSurfaceOutlierThresholdSigma>
+            <UseDefaultSurfaceFit>true</UseDefaultSurfaceFit>
+            <UsedSurfaceFitTypeName></UsedSurfaceFitTypeName>
+            <DelayAfterStageMove>0</DelayAfterStageMove>
+            <SelectedSupportPointDistributionMode>Grid</SelectedSupportPointDistributionMode>
+            <SupportPointColumns>2</SupportPointColumns>
+            <SupportPointRows>2</SupportPointRows>
+            <OnionSkinDistributionDensity>0.05</OnionSkinDistributionDensity>
+            <OnionSkinDistributionMargin>1</OnionSkinDistributionMargin>
+            <OnionSkinDistributionMaxPoints>24</OnionSkinDistributionMaxPoints>
+            <AreSupportPointsAutomaticallyDistributedForNewTileRegions>false</AreSupportPointsAutomaticallyDistributedForNewTileRegions>
+            <TileDimension>
+              <Width>212.52</Width>
+              <Height>177.33</Height>
+              <CenterOffsetX>0</CenterOffsetX>
+              <CenterOffsetY>0</CenterOffsetY>
+            </TileDimension>
+            <OnlineStitchingParameter>
+              <UseFocusReferenceChannel>true</UseFocusReferenceChannel>
+              <ReferenceChannelId>0</ReferenceChannelId>
+            </OnlineStitchingParameter>
+            <AllowedScanArea IsActivated="false">
+              <ContourType>Rectangle</ContourType>
+              <Center>0,0</Center>
+              <Size>0,0</Size>
+            </AllowedScanArea>
+            <TileRegions />
+            <SingleTileRegions />
+            <SingleTileRegionArrays />
+            <Template Name="Multislide 8">
+              <AnchorPoint>-28605.2,-20839.4</AnchorPoint>
+              <BoundsSize>282800,120200</BoundsSize>
+              <Category>Multislide</Category>
+              <HasRegularShapes>true</HasRegularShapes>
+              <ReferencePoint>141400,60100</ReferencePoint>
+              <ReferencePointLocationMode>Center</ReferencePointLocationMode>
+              <ShapeType>Rectangle</ShapeType>
+              <ShapeColumns>8</ShapeColumns>
+              <ShapeRows>1</ShapeRows>
+              <ShapeWidth>26300</ShapeWidth>
+              <ShapeHeight>69100</ShapeHeight>
+              <ShapeDistanceX>28300</ShapeDistanceX>
+              <ShapeDistanceY>0</ShapeDistanceY>
+              <AreAxisAnnotationsSwitched>false</AreAxisAnnotationsSwitched>
+              <IsRowAnnotationDirectionInverted>false</IsRowAnnotationDirectionInverted>
+              <IsColumnAnnotationDirectionInverted>false</IsColumnAnnotationDirectionInverted>
+              <OriginalShapeWidth>26300</OriginalShapeWidth>
+              <OriginalShapeHeight>69100</OriginalShapeHeight>
+              <OriginalShapeDistanceX>28300</OriginalShapeDistanceX>
+              <OriginalShapeDistanceY>0</OriginalShapeDistanceY>
+              <AreShapesCenteredX>true</AreShapesCenteredX>
+              <AreShapesCenteredY>true</AreShapesCenteredY>
+              <ShapesDistanceToBorderX>0</ShapesDistanceToBorderX>
+              <ShapesDistanceToBorderY>0</ShapesDistanceToBorderY>
+              <Rotation>0</Rotation>
+              <ImmersionPoint>13000,13000</ImmersionPoint>
+              <BottomMaterial>Glass</BottomMaterial>
+              <BottomThickness>170</BottomThickness>
+              <BottomOffset>1500</BottomOffset>
+              <BottomOffsetMeasured>NaN</BottomOffsetMeasured>
+              <BottomRefractiveIndex>1.52</BottomRefractiveIndex>
+              <InsertType>Default</InsertType>
+              <PartOfInsertName></PartOfInsertName>
+              <BottomColor>Unknown</BottomColor>
+              <UsageHints>UsableWithSampleNavigator</UsageHints>
+              <MaterialNumber></MaterialNumber>
+              <OptionalWarning></OptionalWarning>
+              <OptionalInfo></OptionalInfo>
+              <MaxStageSpeed>NaN</MaxStageSpeed>
+              <MaxStageAcceleration>NaN</MaxStageAcceleration>
+              <SupportPoints />
+            </Template>
+          </SampleHolder>
+          <SubDimensionSetups />
+        </RegionsSetup>
+        <TilesSetup IsActivated="false">
+          <SubDimensionSetups />
+        </TilesSetup>
+        <LiveSetup IsActivated="false">
+          <SubDimensionSetups />
+        </LiveSetup>
+        <PanoramaSetup IsActivated="false">
+          <SubDimensionSetups />
+        </PanoramaSetup>
+        <HalfPupilSetup IsActivated="false">
+          <IsContainerAdaptionEnabled>true</IsContainerAdaptionEnabled>
+          <StartAngle>0</StartAngle>
+          <SubDimensionSetups />
+        </HalfPupilSetup>
         <TimeSeriesSetup IsActivated="false">
           <IsLongAsPossible>false</IsLongAsPossible>
           <IsBurstMode>false</IsBurstMode>
@@ -543,127 +664,6 @@
           <SetupExtensions />
           <SubDimensionSetups />
         </TimeSeriesSetup>
-        <RegionsSetup IsActivated="false">
-          <SampleHolder>
-            <Overlap>0.1</Overlap>
-            <ScanMode>Meander</ScanMode>
-            <PositionedRegionsScanMode>FirstYThenX</PositionedRegionsScanMode>
-            <TemplateShapesScanMode>Meander</TemplateShapesScanMode>
-            <IsConstantTiles>false</IsConstantTiles>
-            <TileRegionAnchorMode>Center</TileRegionAnchorMode>
-            <StageReferencePoint>112794.8,39260.6</StageReferencePoint>
-            <UseStageBacklashCorrection>true</UseStageBacklashCorrection>
-            <UseFocusBacklashCorrection>true</UseFocusBacklashCorrection>
-            <IsOptimizedPositionedRegionsSorting>true</IsOptimizedPositionedRegionsSorting>
-            <IsOptimizedTemplateShapesSorting>true</IsOptimizedTemplateShapesSorting>
-            <UseStageContinualSpeed>false</UseStageContinualSpeed>
-            <StageContinualSpeed>0.8</StageContinualSpeed>
-            <UseStageContinualAcceleration>false</UseStageContinualAcceleration>
-            <StageContinualAcceleration>0.5</StageContinualAcceleration>
-            <MoveToLoadPositionBetweenRegions>false</MoveToLoadPositionBetweenRegions>
-            <MoveToLoadPositionBetweenShapes>false</MoveToLoadPositionBetweenShapes>
-            <SplitScenesInSeparateFiles>false</SplitScenesInSeparateFiles>
-            <SplitTilesInSeparateFiles>false</SplitTilesInSeparateFiles>
-            <TileRegionCoveringMode>AlignedToLocalTileRegion</TileRegionCoveringMode>
-            <TemplateShapesFillMode>FillGrade</TemplateShapesFillMode>
-            <TemplateShapesFillGrade>0.25</TemplateShapesFillGrade>
-            <TemplateShapesFillWidth>10</TemplateShapesFillWidth>
-            <TemplateShapesFillHeight>10</TemplateShapesFillHeight>
-            <IsOnlineStitchingEnabled>false</IsOnlineStitchingEnabled>
-            <IsOnlinePyramidEnabled>true</IsOnlinePyramidEnabled>
-            <GlobalInterpolationExpansionDegree>2</GlobalInterpolationExpansionDegree>
-            <LocalInterpolationExpansionDegree>2</LocalInterpolationExpansionDegree>
-            <IsFocusSurfaceOutlierRemovingEnabled>true</IsFocusSurfaceOutlierRemovingEnabled>
-            <FocusSurfaceOutlierExpansionDegree>1</FocusSurfaceOutlierExpansionDegree>
-            <FocusSurfaceOutlierThresholdSigma>2.75</FocusSurfaceOutlierThresholdSigma>
-            <UseDefaultSurfaceFit>true</UseDefaultSurfaceFit>
-            <UsedSurfaceFitTypeName></UsedSurfaceFitTypeName>
-            <DelayAfterStageMove>0</DelayAfterStageMove>
-            <SelectedSupportPointDistributionMode>Grid</SelectedSupportPointDistributionMode>
-            <SupportPointColumns>2</SupportPointColumns>
-            <SupportPointRows>2</SupportPointRows>
-            <OnionSkinDistributionDensity>0.05</OnionSkinDistributionDensity>
-            <OnionSkinDistributionMargin>1</OnionSkinDistributionMargin>
-            <OnionSkinDistributionMaxPoints>24</OnionSkinDistributionMaxPoints>
-            <AreSupportPointsAutomaticallyDistributedForNewTileRegions>false</AreSupportPointsAutomaticallyDistributedForNewTileRegions>
-            <TileDimension>
-              <Width>5683.2</Width>
-              <Height>3196.8</Height>
-              <CenterOffsetX>0</CenterOffsetX>
-              <CenterOffsetY>0</CenterOffsetY>
-            </TileDimension>
-            <OnlineStitchingParameter>
-              <UseFocusReferenceChannel>true</UseFocusReferenceChannel>
-              <ReferenceChannelId>0</ReferenceChannelId>
-            </OnlineStitchingParameter>
-            <AllowedScanArea IsActivated="false">
-              <ContourType>Rectangle</ContourType>
-              <Center>0,0</Center>
-              <Size>0,0</Size>
-            </AllowedScanArea>
-            <TileRegions />
-            <SingleTileRegions />
-            <SingleTileRegionArrays />
-            <Template Name="Multislide 8">
-              <AnchorPoint>-28605.2,-20839.4</AnchorPoint>
-              <BoundsSize>282800,120200</BoundsSize>
-              <Category>Multislide</Category>
-              <HasRegularShapes>true</HasRegularShapes>
-              <ReferencePoint>141400,60100</ReferencePoint>
-              <ReferencePointLocationMode>Center</ReferencePointLocationMode>
-              <ShapeType>Rectangle</ShapeType>
-              <ShapeColumns>8</ShapeColumns>
-              <ShapeRows>1</ShapeRows>
-              <ShapeWidth>26300</ShapeWidth>
-              <ShapeHeight>69100</ShapeHeight>
-              <ShapeDistanceX>28300</ShapeDistanceX>
-              <ShapeDistanceY>0</ShapeDistanceY>
-              <AreAxisAnnotationsSwitched>false</AreAxisAnnotationsSwitched>
-              <IsRowAnnotationDirectionInverted>false</IsRowAnnotationDirectionInverted>
-              <IsColumnAnnotationDirectionInverted>false</IsColumnAnnotationDirectionInverted>
-              <OriginalShapeWidth>26300</OriginalShapeWidth>
-              <OriginalShapeHeight>69100</OriginalShapeHeight>
-              <OriginalShapeDistanceX>28300</OriginalShapeDistanceX>
-              <OriginalShapeDistanceY>0</OriginalShapeDistanceY>
-              <AreShapesCenteredX>true</AreShapesCenteredX>
-              <AreShapesCenteredY>true</AreShapesCenteredY>
-              <ShapesDistanceToBorderX>0</ShapesDistanceToBorderX>
-              <ShapesDistanceToBorderY>0</ShapesDistanceToBorderY>
-              <Rotation>0</Rotation>
-              <ImmersionPoint>13000,13000</ImmersionPoint>
-              <BottomMaterial>Glass</BottomMaterial>
-              <BottomThickness>170</BottomThickness>
-              <BottomOffset>1500</BottomOffset>
-              <BottomOffsetMeasured>NaN</BottomOffsetMeasured>
-              <BottomRefractiveIndex>1.52</BottomRefractiveIndex>
-              <InsertType>Default</InsertType>
-              <PartOfInsertName></PartOfInsertName>
-              <BottomColor>Unknown</BottomColor>
-              <UsageHints>UsableWithSampleNavigator</UsageHints>
-              <MaterialNumber></MaterialNumber>
-              <OptionalWarning></OptionalWarning>
-              <OptionalInfo></OptionalInfo>
-              <MaxStageSpeed>NaN</MaxStageSpeed>
-              <MaxStageAcceleration>NaN</MaxStageAcceleration>
-              <SupportPoints />
-            </Template>
-          </SampleHolder>
-          <SubDimensionSetups />
-        </RegionsSetup>
-        <TilesSetup IsActivated="false">
-          <SubDimensionSetups />
-        </TilesSetup>
-        <LiveSetup IsActivated="false">
-          <SubDimensionSetups />
-        </LiveSetup>
-        <PanoramaSetup IsActivated="false">
-          <SubDimensionSetups />
-        </PanoramaSetup>
-        <HalfPupilSetup IsActivated="false">
-          <IsContainerAdaptionEnabled>true</IsContainerAdaptionEnabled>
-          <StartAngle>0</StartAngle>
-          <SubDimensionSetups />
-        </HalfPupilSetup>
         <ApoTomeAcquisitionSetup IsActivated="false">
           <PhaseCount>0</PhaseCount>
           <IsOnlineProcessing>false</IsOnlineProcessing>
@@ -712,21 +712,21 @@
             </Calibration>
             <IsHolderEnabled>true</IsHolderEnabled>
             <HolderNumber />
-            <CorrelativeSessionId>879c6867-6958-40db-a8bb-7a747f27b152</CorrelativeSessionId>
+            <CorrelativeSessionId>fcb31f93-cb07-4b91-b96c-c452a406d1cc</CorrelativeSessionId>
           </HolderDocument>
           <SubDimensionSetups />
         </CorrelativeSetup>
       </SubDimensionSetups>
       <HelperSetups>
         <AcquisitionModeSetup IsActivated="true">
-          <SelectedDetector>MTBCamera_MTBInfinitySpacePortChanger_Cameraport.Axiocam208c</SelectedDetector>
+          <SelectedDetector>MTBCamera_MTBTube_Cameraport.Axiocam305m</SelectedDetector>
           <Detectors>
             <Detector Id="MTBCamera_MTBInfinitySpacePortChanger_Cameraport.Axiocam208c">
               <ApplyCameraProfile Status="Valid">false</ApplyCameraProfile>
               <ApplyImageOrientation Status="Valid">true</ApplyImageOrientation>
-              <ExposureTime Status="Valid">6.601</ExposureTime>
+              <ExposureTime Status="Valid">150</ExposureTime>
               <Frame Status="Valid">0,0,1920,1080</Frame>
-              <ImageOrientation Status="Valid">1</ImageOrientation>
+              <ImageOrientation Status="Valid">2</ImageOrientation>
               <ImageDeliveryBufferCount Status="Valid">4</ImageDeliveryBufferCount>
               <Adjust Status="Valid">0.3</Adjust>
               <AutoExposure Status="Valid">false</AutoExposure>
@@ -741,7 +741,7 @@
               <NoiseFilter Status="Valid">false</NoiseFilter>
               <NoiseFilterThreshold Status="Valid">1.5</NoiseFilterThreshold>
               <ReferenceImageCount Status="Valid">3</ReferenceImageCount>
-              <ShadingReference Status="Valid">true</ShadingReference>
+              <ShadingReference Status="Valid">false</ShadingReference>
               <ShadingReferenceSource Status="Valid">1</ShadingReferenceSource>
               <ShadingReferenceSourceVisibility Status="Valid">true</ShadingReferenceSourceVisibility>
               <ShadingStrength Status="Valid">1</ShadingStrength>
@@ -768,28 +768,21 @@
               <HardwareAutoWhiteBalance Status="Valid">false</HardwareAutoWhiteBalance>
               <HardwareBlackLevel Status="Valid">200</HardwareBlackLevel>
               <HardwareCameraOrientation Status="Valid">0</HardwareCameraOrientation>
-              <ColorMode Status="Valid">1</ColorMode>
-              <ColorTemperature Status="Valid">4651</ColorTemperature>
-              <AnalogGain Status="Valid">1</AnalogGain>
-              <HardwareGamma Status="Valid">0.45</HardwareGamma>
+              <ColorMode Status="Valid">0</ColorMode>
+              <ColorTemperature Status="Valid">3610</ColorTemperature>
+              <AnalogGain Status="Valid">3</AnalogGain>
+              <HardwareGamma Status="Valid">1</HardwareGamma>
               <HDRMode Status="Valid">false</HDRMode>
-              <NoiseCorrection Status="Valid">true</NoiseCorrection>
+              <NoiseCorrection Status="Valid">false</NoiseCorrection>
               <Resolution Status="Valid">1</Resolution>
-              <SharpnessCorrection Status="Valid">true</SharpnessCorrection>
+              <SharpnessCorrection Status="Valid">false</SharpnessCorrection>
               <TransferFormat Status="Valid">0</TransferFormat>
               <TransferQuality Status="Valid">90</TransferQuality>
-              <CameraExtraControlCommandName Status="Valid"></CameraExtraControlCommandName>
-              <NoiseFilterWithIPP Status="Valid">true</NoiseFilterWithIPP>
-              <CenteredYFrame Status="Valid">false</CenteredYFrame>
-              <ImageOrientationWithIPP Status="Valid">true</ImageOrientationWithIPP>
-              <ManualShadingReferenceId Status="Valid"></ManualShadingReferenceId>
-              <CameraGenericCommandName Status="Valid"></CameraGenericCommandName>
-              <OptimalBinningForOptics Status="Valid">false</OptimalBinningForOptics>
             </Detector>
             <Detector Id="MTBCamera_MTBTube_Cameraport.AxioCamMRm3">
               <ApplyCameraProfile Status="Valid">false</ApplyCameraProfile>
               <ApplyImageOrientation Status="Valid">true</ApplyImageOrientation>
-              <ExposureTime Status="Valid">200</ExposureTime>
+              <ExposureTime Status="Valid">42</ExposureTime>
               <Frame Status="Valid">0,0,1388,1040</Frame>
               <ImageOrientation Status="Valid">3</ImageOrientation>
               <ContinuousAcquisitionSafeMode Status="Valid">true</ContinuousAcquisitionSafeMode>
@@ -838,6 +831,98 @@
               <AutomaticTriggerControl Status="Valid">true</AutomaticTriggerControl>
               <AdaptExposureByBinningChange Status="Valid">false</AdaptExposureByBinningChange>
             </Detector>
+            <Detector Id="MTBCamera_MTBTube_Cameraport.Axiocam305m">
+              <ApplyCameraProfile Status="Valid">false</ApplyCameraProfile>
+              <ApplyImageOrientation Status="Valid">true</ApplyImageOrientation>
+              <ExposureTime Status="Valid">100</ExposureTime>
+              <Frame Status="Valid">0,0,2464,2056</Frame>
+              <ImageOrientation Status="Valid">3</ImageOrientation>
+              <ContinuousAcquisitionSafeMode Status="Valid">true</ContinuousAcquisitionSafeMode>
+              <EnableSignalsForFastAcq Status="Valid"></EnableSignalsForFastAcq>
+              <ShadingReference Status="Valid">true</ShadingReference>
+              <ShadingReferenceSource Status="Valid">1</ShadingReferenceSource>
+              <ShadingReferenceSourceVisibility Status="Valid">true</ShadingReferenceSourceVisibility>
+              <Resolution Status="Valid">0</Resolution>
+              <BinningList Status="Valid">1</BinningList>
+              <AnalogGainModeList Status="Valid">2</AnalogGainModeList>
+              <SoftwareBinningList Status="Valid">0</SoftwareBinningList>
+              <ResamplingParameterKey Status="Valid">1</ResamplingParameterKey>
+              <ResamplingModeParameterKey Status="Valid">0</ResamplingModeParameterKey>
+              <PixelClock Status="Valid">0</PixelClock>
+              <ImageDeliveryBufferCount Status="Valid">4</ImageDeliveryBufferCount>
+              <Adjust Status="Valid">0.3</Adjust>
+              <AdjustFrameRate Status="Valid">true</AdjustFrameRate>
+              <AutoExposure Status="Valid">false</AutoExposure>
+              <AutoExposureFrame Status="Valid">Empty</AutoExposureFrame>
+              <Binning Status="Valid">2,2</Binning>
+              <BlackReference Status="Valid">false</BlackReference>
+              <DefaultDisplayGamma Status="Valid">1</DefaultDisplayGamma>
+              <DeliverExactFrame Status="Valid">false</DeliverExactFrame>
+              <DualCameraCalibration Status="Valid">false</DualCameraCalibration>
+              <DualCameraCalibrationId Status="Valid">None</DualCameraCalibrationId>
+              <ExposureDelay Status="Valid">0</ExposureDelay>
+              <CalculateExposureMaximum Status="Valid">10000</CalculateExposureMaximum>
+              <AutoExposureTolerance Status="Valid">0.05</AutoExposureTolerance>
+              <FrameRateTarget Status="Valid">30</FrameRateTarget>
+              <HDRBits Status="Valid">2</HDRBits>
+              <NoiseFilter Status="Valid">false</NoiseFilter>
+              <NoiseFilterThreshold Status="Valid">1.5</NoiseFilterThreshold>
+              <ReferenceImageCount Status="Valid">3</ReferenceImageCount>
+              <SnapMode Status="Valid">0</SnapMode>
+              <UnsharpMask Status="Valid">false</UnsharpMask>
+              <UnsharpMaskState Status="Valid"></UnsharpMaskState>
+              <ImageCount Status="Valid">3</ImageCount>
+              <AcquisitionFrame Status="Valid">0,0,2464,2056</AcquisitionFrame>
+              <SDKVersion Status="Valid">2.13</SDKVersion>
+              <AbortOnMissedFrames Status="Valid">true</AbortOnMissedFrames>
+              <FrameTime Status="Valid">0</FrameTime>
+              <AntiGlow Status="Valid">1</AntiGlow>
+              <SnapWithSWTrigger Status="Valid">false</SnapWithSWTrigger>
+              <LineFlickerSuppression Status="Valid">2</LineFlickerSuppression>
+              <HighImageRateMode Status="Valid">true</HighImageRateMode>
+              <CameraSubsampling Status="Valid">0</CameraSubsampling>
+              <CameraBitsPerPixel Status="Valid">0</CameraBitsPerPixel>
+              <CameraLUT1 Status="Valid">0</CameraLUT1>
+              <CameraLUT2 Status="Valid">1</CameraLUT2>
+              <CameraGamma Status="Valid">1</CameraGamma>
+              <PreProcessingMemoryBuffersCount Status="Valid">0</PreProcessingMemoryBuffersCount>
+              <PreProcessingDiscBuffersCount Status="Valid">0</PreProcessingDiscBuffersCount>
+              <DiscMemoryType Status="Valid">false</DiscMemoryType>
+              <AutoCompression Status="Valid">0</AutoCompression>
+              <ContinuousAcquisitionMode Status="Valid">0</ContinuousAcquisitionMode>
+              <SequenceCount Status="Valid">0</SequenceCount>
+              <SequenceProgress Status="Valid">true</SequenceProgress>
+              <LEDIntensity Status="Valid">9</LEDIntensity>
+              <SuppressTemperatureWarnings Status="Valid">false</SuppressTemperatureWarnings>
+              <AdaptExposureByBinningChange Status="Valid">false</AdaptExposureByBinningChange>
+              <MultiCameraSetupSize Status="Valid">1</MultiCameraSetupSize>
+              <MultiThreadedAcquisition Status="Valid">false</MultiThreadedAcquisition>
+              <FrameBufferMaxCacheSizeByte Status="Valid">1073741824</FrameBufferMaxCacheSizeByte>
+              <FrameBufferMinCacheSizeByte Status="Valid">524288000</FrameBufferMinCacheSizeByte>
+              <CameraExtraControlCommandName Status="Valid"></CameraExtraControlCommandName>
+              <NoiseFilterWithIPP Status="Valid">true</NoiseFilterWithIPP>
+              <CenteredYFrame Status="Valid">false</CenteredYFrame>
+              <ImageOrientationWithIPP Status="Valid">true</ImageOrientationWithIPP>
+              <ManualShadingReferenceId Status="Valid"></ManualShadingReferenceId>
+              <ReadoutTime Status="Valid">28.036</ReadoutTime>
+              <AxioCamHDR Status="Valid">false</AxioCamHDR>
+              <AxioCamNativeHDR Status="Valid">false</AxioCamNativeHDR>
+              <ApplyParametersCommand Status="Valid"></ApplyParametersCommand>
+              <ResetDecoderCache Status="Valid"></ResetDecoderCache>
+              <CacheDecoder Status="Valid">false</CacheDecoder>
+              <Rotation Status="Valid">0</Rotation>
+              <HostControllerStateDescription Status="Valid">1: Non Recommended</HostControllerStateDescription>
+              <MultiThreadedFlipVertically Status="Valid">false</MultiThreadedFlipVertically>
+              <MultiThreadedSortedAcquisition Status="Valid">false</MultiThreadedSortedAcquisition>
+              <MultiThreadedInitImagestreamMetadataInit Status="Valid">false</MultiThreadedInitImagestreamMetadataInit>
+              <UserMinExposureTime Status="Valid">0</UserMinExposureTime>
+              <UserExposureTimeIncrement Status="Valid">0</UserExposureTimeIncrement>
+              <UserMaxExposureTime Status="Valid">600000</UserMaxExposureTime>
+              <CameraGenericCommandName Status="Valid"></CameraGenericCommandName>
+              <OptimalBinningForOptics Status="Valid">true</OptimalBinningForOptics>
+              <NumberOfPreProcessingThreads Status="Valid">1</NumberOfPreProcessingThreads>
+              <ApplyParametersToHWCommand Status="Valid"></ApplyParametersToHWCommand>
+            </Detector>
           </Detectors>
           <Devices />
           <MixedMode>
@@ -859,7 +944,7 @@
           <BeforeHardwareSetting></BeforeHardwareSetting>
           <AfterHardwareSetting></AfterHardwareSetting>
         </BleachingSetup>
-        <DynamicsSetup IsActivated="false" GraphicScale="1" Id="639078056664091792" />
+        <DynamicsSetup IsActivated="false" GraphicScale="1" Id="638064561337547390" />
         <ExperimentModifierRulesSetup IsActivated="false">
           <Flags>
             <RunMode></RunMode>
@@ -871,12 +956,12 @@
           <Regions />
         </ExperimentRegionsSetup>
         <FocusSetup IsActivated="true">
-          <RepetitionSettingsMode>Expert</RepetitionSettingsMode>
+          <RepetitionSettingsMode>Standard</RepetitionSettingsMode>
           <FocusStrategy IsActivated="true">
             <Method>FollowAction</Method>
             <SearchAction>SoftwareAutofocus</SearchAction>
             <SurfaceMode>None</SurfaceMode>
-            <ReferenceChannelId>637582439936880141</ReferenceChannelId>
+            <ReferenceChannelId>637581551002747294</ReferenceChannelId>
             <FixedZPosition>0</FixedZPosition>
             <UseZPositionFromTilesSetup>true</UseZPositionFromTilesSetup>
             <ExecutionInTileRegionMode>CenterOfRegion</ExecutionInTileRegionMode>
@@ -895,14 +980,14 @@
               <IsActivated>false</IsActivated>
               <IsMainIntervalEnabled>true</IsMainIntervalEnabled>
               <IsSubIntervalEnabled>false</IsSubIntervalEnabled>
-              <MainInterval>2</MainInterval>
+              <MainInterval>1</MainInterval>
               <SubInterval>1</SubInterval>
             </TimeSeriesIntervalInfo>
             <RegionsIntervalInfo>
               <IsActivated>false</IsActivated>
               <IsMainIntervalEnabled>true</IsMainIntervalEnabled>
               <IsSubIntervalEnabled>false</IsSubIntervalEnabled>
-              <MainInterval>5</MainInterval>
+              <MainInterval>1</MainInterval>
               <SubInterval>1</SubInterval>
             </RegionsIntervalInfo>
             <TilesIntervalInfo>
@@ -942,14 +1027,14 @@
               <DY>1</DY>
             </AutofocusRegion>
             <BacklashStepsize>2</BacklashStepsize>
-            <DepthOfFocus>216.12</DepthOfFocus>
+            <DepthOfFocus>1.32</DepthOfFocus>
             <DoBleachingCorrection>true</DoBleachingCorrection>
             <InitialDirection>0</InitialDirection>
             <IsAutomaticRange>true</IsAutomaticRange>
-            <LowerLimit>100</LowerLimit>
+            <LowerLimit>10000</LowerLimit>
             <PredefinedStepsize>Optimal</PredefinedStepsize>
             <SharpnessMeasureMethod>Auto</SharpnessMeasureMethod>
-            <RelativeSearchRange>8644.8</RelativeSearchRange>
+            <RelativeSearchRange>52.800000000000004</RelativeSearchRange>
             <SearchRangeType>Relative</SearchRangeType>
             <SearchStrategy>Sequential</SearchStrategy>
             <SharpnessMeasureSet Name="Best" Aggregator="RootMeanSquare">
@@ -969,7 +1054,7 @@
                 </Parameters>
               </SharpnessMeasure>
             </SharpnessMeasureSet>
-            <UpperLimit>-100</UpperLimit>
+            <UpperLimit>26000</UpperLimit>
             <UseAcquisitionROI>true</UseAcquisitionROI>
             <UseCameraParameters>false</UseCameraParameters>
             <UseChannelInformation>true</UseChannelInformation>
@@ -1052,8 +1137,8 @@
   <HardwareSettingsPool>
     <HardwareSetting Name="Before [DAPI] Smart">
       <ParameterCollection Id="MTBInfinitySpacePortChanger">
-        <Position Status="Valid" IsActivated="true">2</Position>
-        <PositionName Status="Valid" IsActivated="true">Imager.InfinitySpaceChangerBeamSplitter 0/100</PositionName>
+        <Position Status="Valid" IsActivated="true">1</Position>
+        <PositionName Status="Valid" IsActivated="true">Imager.InfinitySpaceChangerBeamSplitter 100/0</PositionName>
       </ParameterCollection>
       <ParameterCollection Id="MTBReflectorChanger">
         <Position IsActivated="true">2</Position>
@@ -1061,7 +1146,7 @@
       </ParameterCollection>
       <ParameterCollection Id="MTBLED1">
         <IsEnabled Status="Valid" IsActivated="true">true</IsEnabled>
-        <Intensity Status="Valid" IsActivated="true">50</Intensity>
+        <Intensity Status="Valid" IsActivated="true" Unit="%">25</Intensity>
       </ParameterCollection>
       <ParameterCollection Id="MTBRLShutter">
         <IsClosed Status="Valid" IsActivated="true">false</IsClosed>
@@ -1132,8 +1217,8 @@
     </HardwareSetting>
     <HardwareSetting Name="Before [At425] Smart">
       <ParameterCollection Id="MTBInfinitySpacePortChanger">
-        <Position Status="Valid" IsActivated="true">2</Position>
-        <PositionName Status="Valid" IsActivated="true">Imager.InfinitySpaceChangerBeamSplitter 0/100</PositionName>
+        <Position Status="Valid" IsActivated="true">1</Position>
+        <PositionName Status="Valid" IsActivated="true">Imager.InfinitySpaceChangerBeamSplitter 100/0</PositionName>
       </ParameterCollection>
       <ParameterCollection Id="MTBReflectorChanger">
         <Position IsActivated="true">3</Position>
@@ -1141,7 +1226,7 @@
       </ParameterCollection>
       <ParameterCollection Id="MTBLED2">
         <IsEnabled Status="Valid" IsActivated="true">true</IsEnabled>
-        <Intensity Status="Valid" IsActivated="true">50</Intensity>
+        <Intensity Status="Valid" IsActivated="true" Unit="%">25</Intensity>
       </ParameterCollection>
       <ParameterCollection Id="MTBRLShutter">
         <IsClosed Status="Valid" IsActivated="true">false</IsClosed>
@@ -1158,8 +1243,8 @@
     </HardwareSetting>
     <HardwareSetting Name="Before [At488] Smart">
       <ParameterCollection Id="MTBInfinitySpacePortChanger">
-        <Position Status="Valid" IsActivated="true">2</Position>
-        <PositionName Status="Valid" IsActivated="true">Imager.InfinitySpaceChangerBeamSplitter 0/100</PositionName>
+        <Position Status="Valid" IsActivated="true">1</Position>
+        <PositionName Status="Valid" IsActivated="true">Imager.InfinitySpaceChangerBeamSplitter 100/0</PositionName>
       </ParameterCollection>
       <ParameterCollection Id="MTBReflectorChanger">
         <Position IsActivated="true">4</Position>
@@ -1167,7 +1252,7 @@
       </ParameterCollection>
       <ParameterCollection Id="MTBLED3">
         <IsEnabled Status="Valid" IsActivated="true">true</IsEnabled>
-        <Intensity Status="Valid" IsActivated="true">11.83825</Intensity>
+        <Intensity Status="Valid" IsActivated="true" Unit="%">25</Intensity>
       </ParameterCollection>
       <ParameterCollection Id="MTBRLShutter">
         <IsClosed Status="Valid" IsActivated="true">false</IsClosed>
@@ -1184,8 +1269,8 @@
     </HardwareSetting>
     <HardwareSetting Name="Before [At532] Smart">
       <ParameterCollection Id="MTBInfinitySpacePortChanger">
-        <Position Status="Valid" IsActivated="true">2</Position>
-        <PositionName Status="Valid" IsActivated="true">Imager.InfinitySpaceChangerBeamSplitter 0/100</PositionName>
+        <Position Status="Valid" IsActivated="true">1</Position>
+        <PositionName Status="Valid" IsActivated="true">Imager.InfinitySpaceChangerBeamSplitter 100/0</PositionName>
       </ParameterCollection>
       <ParameterCollection Id="MTBReflectorChanger">
         <Position IsActivated="true">3</Position>
@@ -1193,7 +1278,7 @@
       </ParameterCollection>
       <ParameterCollection Id="MTBLED5">
         <IsEnabled Status="Valid" IsActivated="true">true</IsEnabled>
-        <Intensity Status="Valid" IsActivated="true">50</Intensity>
+        <Intensity Status="Valid" IsActivated="true" Unit="%">25</Intensity>
       </ParameterCollection>
       <ParameterCollection Id="MTBFLLEDFilterChanger">
         <Position Status="Valid" IsActivated="true">1</Position>
@@ -1214,8 +1299,8 @@
     </HardwareSetting>
     <HardwareSetting Name="Before [At590] Smart">
       <ParameterCollection Id="MTBInfinitySpacePortChanger">
-        <Position Status="Valid" IsActivated="true">2</Position>
-        <PositionName Status="Valid" IsActivated="true">Imager.InfinitySpaceChangerBeamSplitter 0/100</PositionName>
+        <Position Status="Valid" IsActivated="true">1</Position>
+        <PositionName Status="Valid" IsActivated="true">Imager.InfinitySpaceChangerBeamSplitter 100/0</PositionName>
       </ParameterCollection>
       <ParameterCollection Id="MTBReflectorChanger">
         <Position Status="Valid" IsActivated="true">4</Position>
@@ -1223,7 +1308,7 @@
       </ParameterCollection>
       <ParameterCollection Id="MTBLED5">
         <IsEnabled Status="Valid" IsActivated="true">true</IsEnabled>
-        <Intensity Status="Valid" IsActivated="true">50</Intensity>
+        <Intensity Status="Valid" IsActivated="true" Unit="%">25</Intensity>
       </ParameterCollection>
       <ParameterCollection Id="MTBFLLEDFilterChanger">
         <Position Status="Valid" IsActivated="true">2</Position>
@@ -1244,16 +1329,16 @@
     </HardwareSetting>
     <HardwareSetting Name="Before [At647] Smart">
       <ParameterCollection Id="MTBInfinitySpacePortChanger">
-        <Position Status="Valid" IsActivated="true">2</Position>
-        <PositionName Status="Valid" IsActivated="true">Imager.InfinitySpaceChangerBeamSplitter 0/100</PositionName>
+        <Position Status="Valid" IsActivated="true">1</Position>
+        <PositionName Status="Valid" IsActivated="true">Imager.InfinitySpaceChangerBeamSplitter 100/0</PositionName>
       </ParameterCollection>
       <ParameterCollection Id="MTBReflectorChanger">
-        <Position IsActivated="true">6</Position>
-        <PositionName IsActivated="true">Reflector.488050-0000-000</PositionName>
+        <Position Status="Valid" IsActivated="true">5</Position>
+        <PositionName Status="Valid" IsActivated="true">Reflector.488050-0000-000</PositionName>
       </ParameterCollection>
       <ParameterCollection Id="MTBLED6">
         <IsEnabled Status="Valid" IsActivated="true">true</IsEnabled>
-        <Intensity Status="Valid" IsActivated="true">50</Intensity>
+        <Intensity Status="Valid" IsActivated="true" Unit="%">100</Intensity>
       </ParameterCollection>
       <ParameterCollection Id="MTBRLShutter">
         <IsClosed Status="Valid" IsActivated="true">false</IsClosed>
@@ -1270,8 +1355,8 @@
     </HardwareSetting>
     <HardwareSetting Name="Before [At550] Smart">
       <ParameterCollection Id="MTBInfinitySpacePortChanger">
-        <Position Status="Valid" IsActivated="true">2</Position>
-        <PositionName Status="Valid" IsActivated="true">Imager.InfinitySpaceChangerBeamSplitter 0/100</PositionName>
+        <Position Status="Valid" IsActivated="true">1</Position>
+        <PositionName Status="Valid" IsActivated="true">Imager.InfinitySpaceChangerBeamSplitter 100/0</PositionName>
       </ParameterCollection>
       <ParameterCollection Id="MTBReflectorChanger">
         <Position IsActivated="true">5</Position>
@@ -1279,7 +1364,7 @@
       </ParameterCollection>
       <ParameterCollection Id="MTBLED5">
         <IsEnabled Status="Valid" IsActivated="true">true</IsEnabled>
-        <Intensity Status="Valid" IsActivated="true">50</Intensity>
+        <Intensity Status="Valid" IsActivated="true">99.751492537313</Intensity>
       </ParameterCollection>
       <ParameterCollection Id="MTBFLLEDFilterChanger">
         <Position Status="Valid" IsActivated="true">1</Position>
@@ -1304,8 +1389,8 @@
         <PositionName IsActivated="true">FotoTube.VIS_Cam_50/50</PositionName>
       </ParameterCollection>
       <ParameterCollection Id="MTBInfinitySpacePortChanger">
-        <Position Status="Valid" IsActivated="true">2</Position>
-        <PositionName Status="Valid" IsActivated="true">Imager.InfinitySpaceChangerBeamSplitter 0/100</PositionName>
+        <Position IsActivated="true">1</Position>
+        <PositionName IsActivated="true">Imager.InfinitySpaceChangerBeamSplitter 100/0</PositionName>
       </ParameterCollection>
       <ParameterCollection Id="MTBReflectorChanger">
         <Position IsActivated="true">1</Position>
@@ -1313,7 +1398,7 @@
       </ParameterCollection>
       <ParameterCollection Id="MTBTLHalogenLamp">
         <LampMode Status="Valid" IsActivated="true">Manual</LampMode>
-        <Intensity Status="Valid" IsActivated="true">2.42</Intensity>
+        <Intensity Status="Valid" IsActivated="true">2.0201298701299</Intensity>
       </ParameterCollection>
       <ParameterCollection Id="MTBCondenserFrontLensChanger">
         <Position Status="Valid" IsActivated="true">1</Position>
@@ -1327,119 +1412,19 @@
       </ParameterCollection>
     </HardwareSetting>
     <HardwareSetting Name="TrackBeforeSetting">
-      <ParameterCollection Id="MTBTLHalogenLamp">
-        <Intensity Status="Valid" IsActivated="true">3.51</Intensity>
-        <LampMode Status="Valid" IsActivated="true">Manual</LampMode>
-      </ParameterCollection>
-      <ParameterCollection Id="MTBCondenserFrontLensChanger">
-        <Position Status="Valid" IsActivated="true">1</Position>
-      </ParameterCollection>
-      <ParameterCollection Id="MTBTLApertureStop">
-        <Position Status="Valid" IsActivated="true" Unit="NA">0.4864</Position>
-      </ParameterCollection>
-      <ParameterCollection Id="MTBReflectorChanger">
-        <PositionName Status="Valid" IsActivated="true">Reflector.none</PositionName>
-        <Position Status="Valid" IsActivated="true">1</Position>
-      </ParameterCollection>
-      <ParameterCollection Id="MTBRLShutter">
-        <IsClosed Status="Valid" IsActivated="true">true</IsClosed>
-      </ParameterCollection>
-      <ParameterCollection Id="MTBLED1">
-        <Intensity Status="Valid" IsActivated="true" Unit="%">0</Intensity>
-        <IsEnabled Status="Valid" IsActivated="true">false</IsEnabled>
-      </ParameterCollection>
-      <ParameterCollection Id="MTBLED2">
-        <Intensity Status="Valid" IsActivated="true" Unit="%">0</Intensity>
-        <IsEnabled Status="Valid" IsActivated="true">false</IsEnabled>
-      </ParameterCollection>
-      <ParameterCollection Id="MTBLED3">
-        <Intensity Status="Valid" IsActivated="true" Unit="%">0</Intensity>
-        <IsEnabled Status="Valid" IsActivated="true">false</IsEnabled>
-      </ParameterCollection>
       <ParameterCollection Id="MTBLED4">
-        <Intensity Status="Valid" IsActivated="true" Unit="%">20</Intensity>
-        <IsEnabled Status="Valid" IsActivated="true">false</IsEnabled>
-      </ParameterCollection>
-      <ParameterCollection Id="MTBFLLEDFilterChanger">
-        <Position Status="Valid" IsActivated="true">1</Position>
-        <PositionName Status="Valid" IsActivated="true">Albireo_Filter.555_30</PositionName>
-      </ParameterCollection>
-      <ParameterCollection Id="MTBLED5">
-        <Intensity Status="Valid" IsActivated="true" Unit="%">0</Intensity>
-        <IsEnabled Status="Valid" IsActivated="true">false</IsEnabled>
-      </ParameterCollection>
-      <ParameterCollection Id="MTBLED6">
-        <Intensity Status="Valid" IsActivated="true" Unit="%">0</Intensity>
-        <IsEnabled Status="Valid" IsActivated="true">false</IsEnabled>
+        <IsEnabled Status="Valid" IsActivated="true">true</IsEnabled>
+        <Intensity Status="Valid" IsActivated="true" Unit="%">25</Intensity>
       </ParameterCollection>
       <ParameterCollection Id="AlbireoLEDController">
         <LampMode Status="Valid" IsActivated="true">LEDContinuous</LampMode>
       </ParameterCollection>
-      <ParameterCollection Id="MTBInfinitySpacePortChanger">
-        <PositionName Status="Valid" IsActivated="true">Imager.InfinitySpaceChangerBeamSplitter 0/100</PositionName>
-        <Position Status="Valid" IsActivated="true">2</Position>
-      </ParameterCollection>
-      <ParameterCollection Id="MTBTubeVisCamChanger">
-        <Position Status="Valid" IsActivated="true">1</Position>
-        <PositionName Status="Valid" IsActivated="true">FotoTube.VIS_Cam_50/50</PositionName>
+      <ParameterCollection Id="MTBReflectorChanger">
+        <PositionName Status="Valid" IsActivated="true">Cy 7</PositionName>
+        <Position Status="Valid" IsActivated="true">6</Position>
       </ParameterCollection>
     </HardwareSetting>
     <HardwareSetting Name="TrackAfterSetting" />
-    <HardwareSetting Name="TrackBeforeSetting_2">
-      <ParameterCollection Id="MTBInfinitySpacePortChanger">
-        <Position Status="Valid" IsActivated="true">2</Position>
-        <PositionName Status="Valid" IsActivated="true">Imager.InfinitySpaceChangerBeamSplitter 0/100</PositionName>
-      </ParameterCollection>
-      <ParameterCollection Id="MTBReflectorChanger">
-        <PositionName Status="Valid" IsActivated="true">Reflector.none</PositionName>
-        <Position Status="Valid" IsActivated="true">1</Position>
-      </ParameterCollection>
-      <ParameterCollection Id="MTBRLShutter">
-        <IsClosed Status="Valid" IsActivated="true">true</IsClosed>
-      </ParameterCollection>
-      <ParameterCollection Id="MTBLED1">
-        <Intensity Status="Valid" IsActivated="true" Unit="%">0</Intensity>
-        <IsEnabled Status="Valid" IsActivated="true">false</IsEnabled>
-      </ParameterCollection>
-      <ParameterCollection Id="MTBLED2">
-        <Intensity Status="Valid" IsActivated="true" Unit="%">0</Intensity>
-        <IsEnabled Status="Valid" IsActivated="true">false</IsEnabled>
-      </ParameterCollection>
-      <ParameterCollection Id="MTBLED3">
-        <Intensity Status="Valid" IsActivated="true" Unit="%">0</Intensity>
-        <IsEnabled Status="Valid" IsActivated="true">false</IsEnabled>
-      </ParameterCollection>
-      <ParameterCollection Id="MTBLED4">
-        <Intensity Status="Valid" IsActivated="true" Unit="%">20</Intensity>
-        <IsEnabled Status="Valid" IsActivated="true">false</IsEnabled>
-      </ParameterCollection>
-      <ParameterCollection Id="MTBFLLEDFilterChanger">
-        <Position Status="Valid" IsActivated="true">1</Position>
-        <PositionName Status="Valid" IsActivated="true">Albireo_Filter.555_30</PositionName>
-      </ParameterCollection>
-      <ParameterCollection Id="MTBLED5">
-        <Intensity Status="Valid" IsActivated="true" Unit="%">0</Intensity>
-        <IsEnabled Status="Valid" IsActivated="true">false</IsEnabled>
-      </ParameterCollection>
-      <ParameterCollection Id="MTBLED6">
-        <Intensity Status="Valid" IsActivated="true" Unit="%">0</Intensity>
-        <IsEnabled Status="Valid" IsActivated="true">false</IsEnabled>
-      </ParameterCollection>
-      <ParameterCollection Id="AlbireoLEDController">
-        <LampMode Status="Valid" IsActivated="true">LEDContinuous</LampMode>
-      </ParameterCollection>
-      <ParameterCollection Id="MTBCondenserFrontLensChanger">
-        <Position Status="Valid" IsActivated="true">1</Position>
-      </ParameterCollection>
-      <ParameterCollection Id="MTBTLApertureStop">
-        <Position Status="Valid" IsActivated="true" Unit="NA">0.4864</Position>
-      </ParameterCollection>
-      <ParameterCollection Id="MTBTLHalogenLamp">
-        <Intensity Status="Valid" IsActivated="true">4.4</Intensity>
-        <LampMode Status="Valid" IsActivated="true">Manual</LampMode>
-      </ParameterCollection>
-    </HardwareSetting>
-    <HardwareSetting Name="TrackAfterSetting_2" />
   </HardwareSettingsPool>
   <ExperimentFeedback IsActivated="false">
     <IsSynchronous>true</IsSynchronous>
