@@ -55,8 +55,7 @@ showProgress(1, 1);//clear progress bar
 //get the ROIs from the watershed
 run("Label image to composite ROIs", "rm=[RoiManager[size=2285, visible=true]]");
 
-//REMOVE THE EDGE ROIs
-
+//FILTERING OF ROIs
 nROIs = roiManager("count");
 width = getWidth();
 height = getHeight();
@@ -75,32 +74,23 @@ for (roiIndex = 0; roiIndex < nROIs; roiIndex++) {	//loop over each ROI
     	run("Clear", "slice");  // delete content in that ROI
         roiManager("Delete");	//delete ROI as well
         roiIndex --;	//check the new ROI that's taken the old one's place
-        nROIs = roiManager("count");	//set the new amount of ROIs for te loop
+        nROIs = roiManager("count");	//set the new amount of ROIs for the loop
         continue;
     }
     close("Results");
-    if ( (sel_width <= min_sel_size) || (sel_height <= min_sel_size)){	//remove dots smaller than 
+    if ( (sel_width <= min_sel_size) || (sel_height <= min_sel_size)){	//remove dots smaller than the minimim sel_size
     	run("Clear", "slice");  // delete content in that ROI
         roiManager("Delete");	//delete ROI as well
         roiIndex --;	//check the new ROI that's taken the old one's place
         nROIs = roiManager("count");	//set the new amount of ROIs for te loop
-        continue;
+        continue;   
     }
 }
 
 
-roiManager("Save", dir_saveROIs + "RoiSet.zip");
+roiManager("Save", dir_saveROIs + "RoiSet.zip");    // Save ROI list for manual data analysis
 
-
-//measure and extract kurtosis measurements (along with the slide of them)
-selectImage(title_OG);
-run("Set Measurements...", "standard center perimeter bounding skewness kurtosis stack display redirect=None decimal=3");	// set what will get measured
-roiManager("Deselect");
-roiManager("Measure");
-saveAs("Results", dir_saveROIs + "Results.csv");
-
-//clean up
-close("Results");
+//cleanup
 close("watershed_stack");
 close("Mask_1");
 }

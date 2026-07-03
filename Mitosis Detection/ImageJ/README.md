@@ -1,56 +1,46 @@
 # MEP file contents
 
 - [Image J Approaches](#image-j-approaches) 
-    - [Haralick_Analysis](#haralick-analysis)
-        - [Test_Data](#test_data)
-        - [Process_HaralickROIs.ijm](#process_haralick_roisijm)
-        - [Haralick_plots.py](#haralick_plotspy)
-    - [Process_Image.ijm](#process_imageijm)
-    - [Candidate_Segmentation_Measure.ijm](#candidate_segmentation_measureijm)
-    - [ROI_filtering.py](#roi_filteringpy)
+    - [Image_Preprocessing.ijm](#process_imageijm)
+    - [Candidate_Segmentation.ijm](#candidate_segmentation_measureijm)
+    - [Normalised_8_to_4-bit_Transform.ijm](#normalised_8to4bit_transformijm)
+    - [Extract_Measurements.ijm](#extract_measurementsijm)
+    - [Extact_Haralick_Measurements.ijm](#extract_haralick_measurementsijm)
+    - [Reset_IJ.ijm](#reset_ijijm)
 
 
 # Image J Approaches
 
-## Haralick Analysis
-File contents: Haralick analysis of cell ROIs
+## [Image_Preprocessing.ijm](Image_Prepocessing.ijm)
 
-### [Test_Data](./Haralick_Analysis/Test_Data/)
+Meant to be used to pre-process the z-stack experiments obtained by extracting a single channel of the overview images to ensure correct functioning of the [Candidate_Segmentation.ijm](Candidate_Segmentation.ijm) macro.
 
-folder containing the Test Data obtained frmo performing haralick analysis on different experiments
+Takes the images obtained by the microscope, checks how many channels there are and keeps only the specified channel if there is more than one. It then performs a maximum Z projection based on max intensity to generate a single image.
 
-### [Process_Haralick_ROIs.ijm](./Haralick_Analysis/Process_HaralickROIs.ijm)
+## [Candidate_Segmentation.ijm](Candidate_Segmentation.ijm)
 
-### [Haralick_plots.py](./Haralick_Analysis/Haralick_plots.py)
+Takes the images obtained and segments them using the MorphoLibJ distance transform watershed with the borgefors method. Labelled composite ROIs are extracted through PTBIOP's plugin into a whole list of ROIs.
 
+Then, if ``ignore edges`` is true, it will remove the selected ROIs that are in contact with the edge, as well as remove the ROIs smaller than the set ``min_sel`` pixels from everywhere in the image.
 
-## [Process_Image.ijm](Process_Image.ijm)
+Finally, the macro saves all the ROIs into the folder chosen.
 
-Meant to be used to pre-process the z-stack experiments obtained in the overview images to ensure correct functioning of the [Candidate_Segmentation_Measure.ijm](Candidate_Segmentation_Measure.ijm) macro.
+## [Normalised_8to4bit_Transform.ijm](Normalised_8to4bit_Transform.ijm)
+Takes an image and converts it to an 8-bit image. The maximum intensity value is then extracted and used to calculate a scaled and binned 4-bit transform for each image pixel using the following equation:
 
-Takes the images obtained by the microscope, checks how many channels there are and keeps only the first channel if there is more than one. It then performs a maximum Z projection based on max intensity to generate a single image.
+$$
+\text{px intensity}_{\text{4-bit}}^{\text{final}} = \lceil \frac{\text{px intensity}_{\text{8-bit}}^{\text{original}} \cdot 15}{\text{max intensity}_{\text{8-bit}}^{\text{original}} } \rceil\
+$$
 
-## [Candidate_Segmentation_Measure.ijm](Candidate_Segmentation_Measure.ijm)
+## [Extract_Measurements.ijm](Extract_Measurements.ijm)
+ROI selections are measured on the opened image for the  standard deviation, perimeter, center of mass x and y coordinates, bounding box x and y coordinates, perimeter, selection width and height, and kurtosis. These values are then extracted into a ``Results.csv`` file. 
 
-Takes the images obtained and performs a watershed segmentation on them ###SAY FROM WHERE.
+## [Extract_Haralick_Measurements.ijm](Extract_Haralick_Measurements.ijm)
 
-Then, if "ignore edges" is true, it will remove the selected ROIs that are in contact with the edge, as well as remove the ROIs of small dots from everywhere in the image.
-
-Finally, the macro saves all the ROIs into the folder chosen at first, measures the remaining 
-ROIs and extracts the measured values as a .csv into the same folder.
+Duplicates each ROI, clears the outside of the selection, and pre-processes the resulting image acording to the selected method (gaussian, normalised 4-bit, or none). Then the first 11 0&deg; GLCM Haralick values are calculated using two distinct offsets for each extracted ROI image, where each of the offsets is extracted as a ``Results_Haralick_d_offset.ijm``. The ROI label names are stored in a ``Files_list.csv`` with the ``frame_objectID`` format
 
 ## [Reset_IJ.ijm](Reset_IJ.ijm)
 
 Meant to clear out the fiji application and empty out the ROI manager selections to allow the analysis to be repeated on the next image taken.
 
 It first closes all open image windows, then deletes all ROIs from the ROI manager, and finally it closes the windows displaying the results of the measurements taken.
-
-## [ROI_filtering.py](ROI_filtering.py)
-
-WIP
-
-It imports the exported csv and filters based on the threshold values set.
-
-It then separates the selected ROIs into a new folder and zips it up into `FilteredRois.zip`
-
-It finishes off by deleting the unzipped ROIs folder to save space and allow for the next code to be ran without needing to manually delete it.

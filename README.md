@@ -5,7 +5,7 @@
         - [Speckles](#speckles)
     - [ImageJ (IJ)](#image-j-approaches)
 - [Microscope Implementation](#microscope-implementation)
-    - [ZenAPI (ZAPI)](#zenapi-scripts)
+    - [Zen-API](#zenapi-scripts)
 - [Links and References](#links-and-references)
 
 # Overview
@@ -17,29 +17,29 @@ are working with a Zeiss Axio Imager.Z2 microscope and controlling it using the 
 
 # Mitosis Detection
 
-Use the condensated to  identify cells about to divide
+The mitosis-detection approach plans to make use of the condensing DNA signal showcased during prophase to identify nuclei belonging to cells entering mitosis that are about to divide. To do this, strategies using both [Cell Profiler](#cell-profiler-approaches) and [ImageJ/FIJI](#image-j-approaches) were developed. 
 
 ## Cell Profiler Approaches
 
 ### Speckles
 
-Using the [Extract_Speckles.cppipe](./Mitosis%20Detection/Cell%20Profiler/Speckles/Extract_Speckles.cpproj) pipeline we identify speckles smaller than 10 units and get their frame and which parent cell they belong to into a .csv file.
+Using the [Extract_Speckles.cppipe](./Mitosis%20Detection/Cell%20Profiler/Speckles/Extract_Speckles.cpproj) pipeline created we identify speckles smaller than 10 units and get their frame and which parent cell they belong to into a .csv file.
 
 Then, using the [Speckle_filtering.py](./Mitosis%20Detection/Cell%20Profiler/Speckles/Speckle_filtering.py) script we count the speckles per cell per timeframe and separate into a new folder the images of the cells that surpass the set threshold number of speckles.
 
-Curently, these images then get manually checked by comparing it to the timeframe and separated once more into "correctly identified"and ïncorrectly identified" cells.
+Curently, these images then get manually checked by comparing it to the timeframe and separated once more into "correctly identified"and "incorrectly identified" cells.
+
+Initial tests using this pipeline have shown successful identification of prophase cells with more defined DNA speckles, however persistent false-positive detection of the same interphase cells across timeframes occured even when using different speckle sizes and thresholds. This likely indicates that the biological variability in ``homogeneous" interphase DNA might interphere with speckle counting as a method for prophase detection. --Further validation in extended image-sets to be done.
+
 
 ## Image J Approaches
 
-The taken images are segmented using [Candidate_Segmentation_Measure.ijm](./Mitosis%20Detection/ImageJ/Candidate_Segmentation.ijm) to identify the cells within it and place them into distinct ROIs. Optionally the identified cells can be filtered out based on whether they are located on the edge of the frame and their size.
+Commented macro files developed for mitosis detection can be found in the [ImageJ](./Mitosis%20Detection/ImageJ/) directory.
 
-### Measurement Filtering
-
-[ROI_filtering.py](./Mitosis%20Detection/ImageJ/ROI_filtering.py) is a python script that takes a .csv containing the measurements calculated in ImageJ and identifies the ROIs that are within a certain threshold of whatever parameter you chose to look at.
 
 # Microscope Implementation
 
-In order to interact with the Zen microscope we have used the ZenAPI functionalities along with the pyimagej python package in order to communicate with fiji and allow 
+In order to interact with the Zen microscope we have used the ZenAPI functionalities along with the pyimagej python package in order to communicate with FIJI and allow 
 us to inmediately analyse the obtained images as soon as they are taken. 
 
 ## Setup
